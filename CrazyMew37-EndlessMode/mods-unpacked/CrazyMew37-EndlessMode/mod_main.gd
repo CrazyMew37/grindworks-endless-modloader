@@ -45,6 +45,7 @@ func install_script_hook_files() -> void:
 	ModLoaderMod.install_script_hooks("res://objects/interactables/treasure_chest/treasure_chest.gd", extensions_dir_path.path_join("objects/interactables/treasure_chest/treasure_chest.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://scenes/final_boss/penthouse_boss.gd", extensions_dir_path.path_join("scenes/final_boss/penthouse_boss.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://scenes/game_floor/floor_variants/floor_variant.gd", extensions_dir_path.path_join("scenes/game_floor/floor_variants/floor_variant.hooks.gd"))
+	ModLoaderMod.install_script_hooks("res://objects/globals/item_service.gd", extensions_dir_path.path_join("objects/globals/item_service.hooks.gd"))
 
 func add_translations() -> void:
 	# ! Place all of your translation files into this directory
