@@ -45,7 +45,7 @@ func _ready(chain: ModLoaderHookChain) -> void:
 
 func fill_elevator(chain: ModLoaderHookChain, cog_count: int, dna: CogDNA = null) -> Array[Cog]:
 	var COG_EXTENDED_RANGE = chain.reference_object.COG_LEVEL_RANGE * (Util.floor_number * 0.2)
-	var roll_for_proxies : bool = SaveFileService.progress_file.proxies_unlocked and not chain.reference_object.darkened_sky
+	var roll_for_proxies : bool = SaveFileService.progress_file.proxies_unlocked and chain.reference_object.darkened_sky
 	var new_cogs: Array[Cog]
 	for i in cog_count:
 		var cog = chain.reference_object.COG_SCENE.instantiate()
