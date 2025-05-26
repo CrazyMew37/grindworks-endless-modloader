@@ -36,7 +36,7 @@ func install_script_extensions() -> void:
 	extensions_dir_path = mod_dir_path.path_join("extensions")
 	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("objects/globals/globals.gd"))
 	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("scenes/elevator_scene/elevator_scene.gd"))
-
+	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("objects/general_ui/settings_menu/settings_menu.gd"))
 
 
 func install_script_hook_files() -> void:
@@ -49,6 +49,11 @@ func install_script_hook_files() -> void:
 	ModLoaderMod.install_script_hooks("res://objects/battle/battle_resources/status_effects/boss_effects/boss_logic_traffic_manager.gd", extensions_dir_path.path_join("objects/battle/battle_resources/status_effects/boss_effects/boss_logic_traffic_manager.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://objects/battle/battle_resources/status_effects/boss_effects/status_effect_bk_mental_math.gd", extensions_dir_path.path_join("objects/battle/battle_resources/status_effects/boss_effects/status_effect_bk_mental_math.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://objects/battle/battle_resources/misc_movies/bookkeeper/bk_cook_the_books.gd", extensions_dir_path.path_join("objects/battle/battle_resources/misc_movies/bookkeeper/bk_cook_the_books.hooks.gd"))
+	ModLoaderMod.install_script_hooks("res://objects/interactables/lawbot_puzzles/lawbot_puzzle_grid.gd", extensions_dir_path.path_join("objects/interactables/lawbot_puzzles/lawbot_puzzle_grid.hooks.gd"))
+	ModLoaderMod.install_script_hooks("res://objects/interactables/mole_stomp/mole_stomp.gd", extensions_dir_path.path_join("objects/interactables/mole_stomp/mole_stomp.hooks.gd"))
+	ModLoaderMod.install_script_hooks("res://objects/modules/cgc/variants/cgc_maze_room.gd", extensions_dir_path.path_join("objects/modules/cgc/variants/cgc_maze_room.hooks.gd"))
+	ModLoaderMod.install_script_hooks("res://objects/obstacles/room_timer.gd", extensions_dir_path.path_join("objects/obstacles/room_timer.hooks.gd"))
+	ModLoaderMod.install_script_hooks("res://objects/modules/cgc/variants/cgc_multi_mole_manager.gd", extensions_dir_path.path_join("objects/modules/cgc/variants/cgc_multi_mole_manager.hooks.gd"))
 
 func add_translations() -> void:
 	# ! Place all of your translation files into this directory
@@ -56,4 +61,9 @@ func add_translations() -> void:
 
 
 func _ready() -> void:
-	pass
+	var settingsConfig := ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
+	if not settingsConfig:
+		settingsConfig == ModLoaderConfig.create_config("CrazyMew37-EndlessMode", "endlesssettings", {
+			"endlessenabled": 0,
+			"dupes": 0,
+		})

@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://gxrd3pjjbqgi"]
+
+[ext_resource type="FontFile" uid="uid://cup2yr5w7or1l" path="res://fonts/Minnie.TTF" id="3_losvy"]
+[ext_resource type="FontFile" uid="uid://815gwlftl5ik" path="res://fonts/impress-bt.ttf" id="5_uqkg8"]
+[ext_resource type="PackedScene" uid="uid://b0d1er4oqiqcn" path="res://objects/general_ui/general_button/general_button.tscn" id="6_r7b1s"]
+[ext_resource type="Shader" uid="uid://ryrnfqn0ixe5" path="res://scenes/title_screen/hue_shift.gdshader" id="7_dbu5q"]
+[ext_resource type="Texture2D" uid="uid://ddcktpjy3gdew" path="res://ui_assets/misc/uiAccessoryDelete_up.png" id="8_qbjn4"]
+[ext_resource type="Texture2D" uid="uid://b7ri5sq021cvo" path="res://ui_assets/misc/uiAccessoryDelete_down.png" id="9_0mru3"]
+[ext_resource type="Texture2D" uid="uid://dn8vndd37lqom" path="res://ui_assets/misc/uiAccessoryDelete_rollover.png" id="10_odtg5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0uktb"]
+font = ExtResource("3_losvy")
+font_size = 36
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n41hl"]
+font = ExtResource("5_uqkg8")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnbpc"]
+shader = ExtResource("7_dbu5q")
+shader_parameter/Shift_Hue = 0.585
+shader_parameter/alpha = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_xxrhd"]
+font = ExtResource("5_uqkg8")
+font_size = 20
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VideoSettings" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VideoSettings"]
+layout_mode = 2
+text = "Endless Mode"
+label_settings = SubResource("LabelSettings_0uktb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndlessEnabledSetting" type="HBoxContainer" parent="VideoSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VideoSettings/EndlessEnabledSetting"]
+layout_mode = 2
+text = "Enabled:"
+label_settings = SubResource("LabelSettings_n41hl")
+
+[node name="EndlessEnabledButton" parent="VideoSettings/EndlessEnabledSetting" instance=ExtResource("6_r7b1s")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_vnbpc")
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture_normal = ExtResource("8_qbjn4")
+texture_pressed = ExtResource("9_0mru3")
+texture_hover = ExtResource("10_odtg5")
+texture_disabled = ExtResource("9_0mru3")
+text = "On"
+
+[node name="Label" parent="VideoSettings/EndlessEnabledSetting/EndlessEnabledButton" index="0"]
+text = "On"
+label_settings = SubResource("LabelSettings_xxrhd")
+
+[node name="DupeSetting" type="HBoxContainer" parent="VideoSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VideoSettings/DupeSetting"]
+layout_mode = 2
+text = "Duplicate Items:"
+label_settings = SubResource("LabelSettings_n41hl")
+
+[node name="DupeButton" parent="VideoSettings/DupeSetting" instance=ExtResource("6_r7b1s")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_vnbpc")
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture_normal = ExtResource("8_qbjn4")
+texture_pressed = ExtResource("9_0mru3")
+texture_hover = ExtResource("10_odtg5")
+texture_disabled = ExtResource("9_0mru3")
+text = "Every 5 Floors"
+
+[node name="Label" parent="VideoSettings/DupeSetting/DupeButton" index="0"]
+text = "Every 5 Floors"
+label_settings = SubResource("LabelSettings_xxrhd")
+
+[editable path="VideoSettings/EndlessEnabledSetting/EndlessEnabledButton"]
+[editable path="VideoSettings/DupeSetting/DupeButton"]

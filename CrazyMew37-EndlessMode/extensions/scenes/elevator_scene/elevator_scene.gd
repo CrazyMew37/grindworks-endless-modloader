@@ -1,9 +1,17 @@
 extends "res://scenes/elevator_scene/elevator_scene.gd"
 
+var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
+var EndlessEnabledSetting = SettingsConfig.data["endlessenabled"]
+var DupeSetting = SettingsConfig.data["dupes"]
+
 func _ready():
-	if Util.floor_number == 5:
-		$ElevatorUI.arrow_left.show()
-		$ElevatorUI.arrow_right.show()
+	if Util.floor_number > 0 && Util.floor_number % 5 == 0:
+		if EndlessEnabledSetting == 0:
+			$ElevatorUI.arrow_left.show()
+			$ElevatorUI.arrow_right.show()
+		else:
+			$ElevatorUI.arrow_left.hide()
+			$ElevatorUI.arrow_right.hide()
 	
 	# Get the player in here or so help me
 	player = Util.get_player()
@@ -32,9 +40,13 @@ func _ready():
 	AudioManager.stop_music()
 	AudioManager.set_default_music(load('res://audio/music/beta_installer.ogg'))
 	
-	# Obliterate those seen items every five floors. -cm37
-	if Util.floor_number > 4 && Util.floor_number % 5 == 0:
-		ItemService.seen_items.clear()
+	# Obliterate those seen items. -cm37
+	if DupeSetting == 0 && EndlessEnabledSetting == 0:
+		if Util.floor_number > 4 && Util.floor_number % 5 == 0:
+			ItemService.seen_items.clear()
+	elif DupeSetting == 1 && EndlessEnabledSetting == 0:
+		if Util.floor_number > 4:
+			ItemService.seen_items.clear()
 		
 	# Save progress at every elevator scene
 	await Task.delay(0.1)
