@@ -18,23 +18,3 @@ func assign_item(chain: ModLoaderHookChain, world_item: WorldItem):
 		chain.reference_object.world_item.item = chain.reference_object.override_item
 		return
 	world_item.pool = chain.reference_object.item_pool
-
-func _ready(chain: ModLoaderHookChain) -> void:
-	if Engine.is_editor_hint():
-		return
-	
-	if not chain.reference_object.item_pool:
-		chain.reference_object.do_reroll_chance()
-	elif chain.reference_object.item_pool.resource_path == "res://objects/items/pools/special_items.tres":
-		chain.reference_object.override_replacement_rolls = true
-
-func do_reroll_chance(chain: ModLoaderHookChain) -> void:
-	var reward_chest_roll := RandomService.randf_channel('chest_rolls')
-	if reward_chest_roll < Globals.reward_chest_chance:
-		print("Spawning reward pool chest")
-		chain.reference_object.item_pool = Globals.REWARD_ITEM_POOL
-		if RandomService.randf_channel('chest_rolls') < chain.reference_object.REWARD_OVERRIDE_CHANCE:
-			chain.reference_object.override_replacement_rolls = true
-	else:
-		print("Spawning progressive pool chest")
-		chain.reference_object.item_pool = Globals.PROGRESSIVE_ITEM_POOL
