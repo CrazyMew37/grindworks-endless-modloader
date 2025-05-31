@@ -7,9 +7,9 @@
 				"CrazyMew37"
 			],
 			"compatible_game_version": [
-				"1.1.0",
 				"1.1.1",
-				"1.1.2"
+				"1.1.2",
+				"1.1.3"
 			],
 			"compatible_mod_loader_version": [
 				"7.0.0"
@@ -18,12 +18,12 @@
 				"description": "Settings for Endless",
 				"properties": {
 					"dupes": {
-						"default": 0,
+						"default": 0.0,
 						"title": "Option for Duplicates",
 						"type": "number"
 					},
 					"endlessenabled": {
-						"default": 0,
+						"default": 0.0,
 						"title": "Option for Enabling Endless Mode",
 						"type": "number"
 					}
@@ -36,11 +36,14 @@
 			"incompatibilities": [],
 			"load_before": [],
 			"optional_dependencies": [],
-			"tags": []
+			"tags": [
+				"Endless",
+				"Crazy"
+			]
 		}
 	},
 	"name": "EndlessMode",
 	"namespace": "CrazyMew37",
-	"version_number": "2.0.0",
+	"version_number": "2.1.0",
 	"website_url": "https://github.com/CrazyMew37/grindworks-endless-modloader"
 }

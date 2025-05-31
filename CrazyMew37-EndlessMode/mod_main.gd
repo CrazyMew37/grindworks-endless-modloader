@@ -37,6 +37,7 @@ func install_script_extensions() -> void:
 	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("objects/globals/globals.gd"))
 	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("scenes/elevator_scene/elevator_scene.gd"))
 	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("objects/general_ui/settings_menu/settings_menu.gd"))
+	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("objects/modules/cgc/variants/armchair_manager_logic.gd"))
 
 
 func install_script_hook_files() -> void:
