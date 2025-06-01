@@ -17,14 +17,19 @@
 			"config_schema": {
 				"description": "Settings for Endless",
 				"properties": {
+					"endlessenabled": {
+						"default": 0.0,
+						"title": "Option for Enabling Endless Mode",
+						"type": "number"
+					},
 					"dupes": {
 						"default": 0.0,
 						"title": "Option for Duplicates",
 						"type": "number"
 					},
-					"endlessenabled": {
+					"speedcap": {
 						"default": 0.0,
-						"title": "Option for Enabling Endless Mode",
+						"title": "Option for Speed Cap",
 						"type": "number"
 					}
 				},
