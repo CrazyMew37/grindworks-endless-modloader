@@ -57,7 +57,7 @@ func install_script_hook_files() -> void:
 	ModLoaderMod.install_script_hooks("res://objects/modules/cgc/variants/cgc_multi_mole_manager.gd", extensions_dir_path.path_join("objects/modules/cgc/variants/cgc_multi_mole_manager.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://objects/battle/battle_node/dynamic/battle_node_dynamic.gd", extensions_dir_path.path_join("objects/battle/battle_node/dynamic/battle_node_dynamic.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://objects/battle/battle_resources/stats.gd", extensions_dir_path.path_join("objects/battle/battle_resources/stats.hooks.gd"))
-	ModLoaderMod.install_script_hooks("res://objects/items/custom/item_bee_wings.gd", extensions_dir_path.path_join("objects/items/custom/item_bee_wings.hooks.gd"))
+	ModLoaderMod.install_script_hooks("res://objects/battle/battle_manager/battle_manager.gd", extensions_dir_path.path_join("objects/battle/battle_manager/battle_manager.hooks.gd"))
 
 func add_translations() -> void:
 	# ! Place all of your translation files into this directory
@@ -71,4 +71,5 @@ func _ready() -> void:
 			"endlessenabled": 0,
 			"dupes": 0,
 			"speedcap": 0,
+			"overwritebattlespeed": 0,
 		})

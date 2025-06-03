@@ -10,6 +10,7 @@ var Pla : Player
 var endlessenabledId : int
 var dupeId : int
 var speedcapId : int
+var overwritebattlespeedId : int
 
 const EndlessEnabledSetting : Dictionary = {
 	0 : "On",
@@ -32,12 +33,15 @@ const SpeedCapSetting : Dictionary = {
 	6 : "150%",
 }
 
+var OverwriteBattleSpeedSetting = [1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0]
+
 func _ready() -> void:
 	super()
 	var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings").data
 	endlessenabledId = SettingsConfig["endlessenabled"]
 	dupeId = SettingsConfig["dupes"]
 	speedcapId = SettingsConfig["speedcap"]
+	overwritebattlespeedId = SettingsConfig["overwritebattlespeed"]
 
 	var DupeMenuResource = load("res://mods-unpacked/CrazyMew37-EndlessMode/dupe_settings.tscn")
 	var DupeMenu = DupeMenuResource.instantiate()
@@ -75,14 +79,41 @@ func speedcap() -> void:
 		speedcapId = 0
 	SpeedCapButton.text = SpeedCapSetting[speedcapId]
 
+# TIME TO HIJACK THE BATTLE SPEED! MWAHAHAHAHA!!! -cm37
+func _sync_gameplay_settings() -> void:
+	var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings").data
+	speed_button.text = get_speed_string(OverwriteBattleSpeedSetting[SettingsConfig["overwritebattlespeed"]])
+	reaction_button.text = get_toggle_text(get_setting('item_reactions'))
+	auto_sprint_button.text = get_toggle_text(get_setting('auto_sprint'))
+	control_style_button.text = get_control_style(get_setting('control_style'))
+	cam_sens_slider.value = get_setting("camera_sensitivity")
+	timer_button.text = get_toggle_text(get_setting('show_timer'))
+	intro_skip_button.text = get_toggle_text(get_setting('skip_intro'))
+	custom_cogs_button.text = get_toggle_text(get_setting('use_custom_cogs'))
+	button_prompts_button.text = get_toggle_text(get_setting('button_prompts'))
+	
+	if not is_instance_valid(Util.floor_manager) or Util.stuck_lock:
+		stuck_element.queue_free()
+	if not SaveFileService.progress_file.characters_unlocked > 1:
+		intro_skip_element.queue_free()
+	
+func change_speed() -> void:
+	overwritebattlespeedId += 1
+	if overwritebattlespeedId >= len(OverwriteBattleSpeedSetting):
+		overwritebattlespeedId = 0
+	speed_button.text = get_speed_string(OverwriteBattleSpeedSetting[overwritebattlespeedId])
 	
 func close(save := false) -> void:
 	super(save)
-	var endlessConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
-	endlessConfig.data = {
-		"endlessenabled": endlessenabledId,
-		"dupes": dupeId,
-		"speedcap": speedcapId,
-	}
-	ModLoaderConfig.update_config(endlessConfig)
-	ModLoaderConfig.refresh_current_configs()
+	if prev_file and not save:
+		ModLoaderConfig.refresh_current_configs()
+	else:
+		var endlessConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
+		endlessConfig.data = {
+			"endlessenabled": endlessenabledId,
+			"dupes": dupeId,
+			"speedcap": speedcapId,
+			"overwritebattlespeed": overwritebattlespeedId,
+		}
+		ModLoaderConfig.update_config(endlessConfig)
+		ModLoaderConfig.refresh_current_configs()
