@@ -11,12 +11,12 @@ func roll_for_level(chain: ModLoaderHookChain) -> void:
 		chain.reference_object.level = RandomService.randi_range_channel('cog_levels', chain.reference_object.custom_level_range.x, chain.reference_object.custom_level_range.y)
 	
 	# Allow for Cogs to be higher level than the floor intends
-	if sign(chain.reference_object.level_range_offset) == 1:
+	if sign( chain.reference_object.level_range_offset) == 1:
 		if Util.floor_number > 5:
 			chain.reference_object.level = chain.reference_object.custom_level_range.y + (chain.reference_object.level_range_offset * ceili(Util.floor_number * 0.2))
 		else:
 			chain.reference_object.level = chain.reference_object.custom_level_range.y + chain.reference_object.level_range_offset
-	elif sign(chain.reference_object.level_range_offset) == -1:
+	elif sign( chain.reference_object.level_range_offset) == -1:
 		chain.reference_object.level = (chain.reference_object.custom_level_range.y - chain.reference_object.level_range_offset) + 1
 
 # My first mod seperate from another's. Unsurprsingly, it nearly drove me mad at first. -cm37

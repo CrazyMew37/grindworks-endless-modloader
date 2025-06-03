@@ -14,7 +14,7 @@ func spawn_cogs(chain: ModLoaderHookChain, cog_count := 1) -> void:
 			if Util.floor_number > 5:
 				var new_level = cog.level + (2 * ceili(Util.floor_number * 0.2))
 				if is_instance_valid(Util.floor_manager):
-					new_level = Util.floor_manager.floor_variant.level_range.y + 2
+					new_level = Util.floor_manager.floor_variant.level_range.y + (2 * ceili(Util.floor_number * 0.2))
 				cog.level = new_level
 			else:
 				var new_level = cog.level + 2

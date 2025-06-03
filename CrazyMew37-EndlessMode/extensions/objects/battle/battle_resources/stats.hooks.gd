@@ -3,7 +3,6 @@ extends Object
 # SANIC - cm37
 var SPEED_SETTING_STAT = 2.0
 
-
 # Additive
 @export var max_hp := 25:
 	set(x):
@@ -30,8 +29,6 @@ signal s_defense_changed(new_defense: float)
 signal s_evasiveness_changed(new_evasiveness: float)
 signal s_speed_changed(new_speed: float)
 
-
-
 func _to_string():
 	var return_string := "Stats: \n"
 	var active = false 
@@ -46,6 +43,8 @@ func _to_string():
 var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
 var SpeedCapSetting = SettingsConfig.data["speedcap"]
 func SetSpeedCap():
+	SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
+	SpeedCapSetting = SettingsConfig.data["speedcap"]
 	if SpeedCapSetting == 1:
 		SPEED_SETTING_STAT = 3.0
 	elif SpeedCapSetting == 2:

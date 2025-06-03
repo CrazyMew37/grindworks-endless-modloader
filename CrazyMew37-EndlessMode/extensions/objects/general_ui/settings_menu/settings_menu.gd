@@ -102,7 +102,8 @@ func change_speed() -> void:
 	if overwritebattlespeedId >= len(OverwriteBattleSpeedSetting):
 		overwritebattlespeedId = 0
 	speed_button.text = get_speed_string(OverwriteBattleSpeedSetting[overwritebattlespeedId])
-	
+
+# It was way, WAY too hard to make the speed cap update live. Thank god I found a way. -cm37
 func close(save := false) -> void:
 	super(save)
 	if prev_file and not save:
@@ -117,3 +118,7 @@ func close(save := false) -> void:
 		}
 		ModLoaderConfig.update_config(endlessConfig)
 		ModLoaderConfig.refresh_current_configs()
+		if not is_instance_valid(SceneLoader.current_scene):
+			var PauseChange = get_node("/root/PauseMenu")
+			PauseChange.apply_stat_labels()
+			PauseChange.apply_stat_changes()

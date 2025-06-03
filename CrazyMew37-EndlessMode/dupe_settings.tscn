@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://gxrd3pjjbqgi"]
+[gd_scene load_steps=12 format=3 uid="uid://gxrd3pjjbqgi"]
 
 [ext_resource type="FontFile" uid="uid://cup2yr5w7or1l" path="res://fonts/Minnie.TTF" id="3_losvy"]
 [ext_resource type="FontFile" uid="uid://815gwlftl5ik" path="res://fonts/impress-bt.ttf" id="5_uqkg8"]
@@ -26,12 +26,6 @@ shader_parameter/alpha = 1.0
 [sub_resource type="LabelSettings" id="LabelSettings_xxrhd"]
 font = ExtResource("5_uqkg8")
 font_size = 20
-
-[sub_resource type="LabelSettings" id="LabelSettings_labvl"]
-line_spacing = 0.0
-font = ExtResource("5_uqkg8")
-font_size = 15
-font_color = Color(1, 0, 0, 1)
 
 [node name="VBoxContainer" type="VBoxContainer"]
 offset_right = 40.0
@@ -104,15 +98,6 @@ layout_mode = 2
 layout_mode = 2
 text = "Speed Cap:"
 label_settings = SubResource("LabelSettings_n41hl")
-
-[node name="Label" type="Label" parent="VideoSettings/SpeedCapSetting/Label"]
-layout_mode = 0
-offset_top = -28.0
-offset_right = 329.0
-offset_bottom = 4.0
-text = "(Speed cap will only change after reopening the game!)"
-label_settings = SubResource("LabelSettings_labvl")
-vertical_alignment = 1
 
 [node name="SpeedCapButton" parent="VideoSettings/SpeedCapSetting" instance=ExtResource("6_r7b1s")]
 unique_name_in_owner = true
