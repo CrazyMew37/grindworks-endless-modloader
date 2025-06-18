@@ -1,7 +1,7 @@
 extends Object
 
 # SANIC - cm37
-var SPEED_SETTING_STAT = 2.0
+static var SPEED_SETTING_STAT = 2.0
 
 # Additive
 @export var max_hp := 25:
@@ -60,7 +60,7 @@ func SetSpeedCap():
 	else:
 		SPEED_SETTING_STAT = 2.0
 
-var STAT_CLAMPS: Dictionary[String, Vector2] = {
+static var STAT_CLAMPS: Dictionary[String, Vector2] = {
 	'speed' : Vector2(0.7, SPEED_SETTING_STAT),
 	'damage' : Vector2(0.1, UNCAPPED_STAT_VAL),
 	'defense' : Vector2(0.1, UNCAPPED_STAT_VAL),
