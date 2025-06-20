@@ -8,7 +8,7 @@ func _ready() -> void:
 
 # HAHAHAHA I DID IT!!! -cm37
 func set_arm_level() -> void:
-	var ArmchairMan = $/root/GameFloor/Rooms/FairwayPrison/Navigation/Props/desk/Cog
+	var ArmchairMan = $/root/SceneLoader/GameFloor/Rooms/FairwayPrison/Navigation/Props/desk/Cog
 	var ArmchairManDNA: CogDNA = load("res://objects/cog/presets/misc/armchair_manager.tres")
 	if Util.floor_number > 5:
 		ArmchairMan.level = 20 * ceili(Util.floor_number * 0.2)
