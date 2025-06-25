@@ -25,7 +25,7 @@ shader_parameter/alpha = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_xxrhd"]
 font = ExtResource("5_uqkg8")
-font_size = 20
+font_size = 18
 
 [node name="VBoxContainer" type="VBoxContainer"]
 offset_right = 40.0
@@ -116,6 +116,58 @@ text = "200%"
 text = "200%"
 label_settings = SubResource("LabelSettings_xxrhd")
 
+[node name="ManagerFrequencySetting" type="HBoxContainer" parent="VideoSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VideoSettings/ManagerFrequencySetting"]
+layout_mode = 2
+text = "Ex. Office Freq:"
+label_settings = SubResource("LabelSettings_n41hl")
+
+[node name="ManagerFrequencyButton" parent="VideoSettings/ManagerFrequencySetting" instance=ExtResource("6_r7b1s")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_vnbpc")
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture_normal = ExtResource("8_qbjn4")
+texture_pressed = ExtResource("9_0mru3")
+texture_hover = ExtResource("10_odtg5")
+texture_disabled = ExtResource("9_0mru3")
+text = "Every 5 Floors"
+
+[node name="Label" parent="VideoSettings/ManagerFrequencySetting/ManagerFrequencyButton" index="0"]
+text = "Every 5 Floors"
+label_settings = SubResource("LabelSettings_xxrhd")
+
+[node name="EndlessDifficultySetting" type="HBoxContainer" parent="VideoSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VideoSettings/EndlessDifficultySetting"]
+layout_mode = 2
+text = "Difficulty:"
+label_settings = SubResource("LabelSettings_n41hl")
+
+[node name="EndlessDifficultyButton" parent="VideoSettings/EndlessDifficultySetting" instance=ExtResource("6_r7b1s")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_vnbpc")
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture_normal = ExtResource("8_qbjn4")
+texture_pressed = ExtResource("9_0mru3")
+texture_hover = ExtResource("10_odtg5")
+texture_disabled = ExtResource("9_0mru3")
+text = "Normal (2/3x)"
+
+[node name="Label" parent="VideoSettings/EndlessDifficultySetting/EndlessDifficultyButton" index="0"]
+text = "Normal (2/3x)"
+label_settings = SubResource("LabelSettings_xxrhd")
+
 [editable path="VideoSettings/EndlessEnabledSetting/EndlessEnabledButton"]
 [editable path="VideoSettings/DupeSetting/DupeButton"]
 [editable path="VideoSettings/SpeedCapSetting/SpeedCapButton"]
+[editable path="VideoSettings/ManagerFrequencySetting/ManagerFrequencyButton"]
+[editable path="VideoSettings/EndlessDifficultySetting/EndlessDifficultyButton"]

@@ -71,4 +71,6 @@ func _ready() -> void:
 			"dupes": 0,
 			"speedcap": 0,
 			"overwritebattlespeed": 0,
+			"managerfrequency": 0,
+			"endlessdifficulty": 0,
 		})

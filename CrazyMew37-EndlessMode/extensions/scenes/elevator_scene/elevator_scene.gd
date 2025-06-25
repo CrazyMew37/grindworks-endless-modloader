@@ -3,15 +3,14 @@ extends "res://scenes/elevator_scene/elevator_scene.gd"
 var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
 var EndlessEnabledSetting = SettingsConfig.data["endlessenabled"]
 var DupeSetting = SettingsConfig.data["dupes"]
+var ManagerFrequencySetting = SettingsConfig.data["managerfrequency"]
+var EndlessDifficultySetting = SettingsConfig.data["endlessdifficulty"]
+var DifficultyMultiplier = 1
 
 func _ready():
-	if Util.floor_number > 0 && Util.floor_number % 5 == 0:
-		if EndlessEnabledSetting == 0:
-			$ElevatorUI.arrow_left.show()
-			$ElevatorUI.arrow_right.show()
-		else:
-			$ElevatorUI.arrow_left.hide()
-			$ElevatorUI.arrow_right.hide()
+	if EndlessEnabledSetting == 1 && Util.floor_number > 4:
+		$ElevatorUI.arrow_left.hide()
+		$ElevatorUI.arrow_right.hide()
 	
 	# Get the player in here or so help me
 	player = Util.get_player()
@@ -42,11 +41,25 @@ func _ready():
 	
 	# Obliterate those seen items. -cm37
 	if DupeSetting == 0 && EndlessEnabledSetting == 0:
-		if Util.floor_number > 4 && Util.floor_number % 5 == 0:
+		if Util.floor_number % 5 == 0:
 			ItemService.seen_items.clear()
 	elif DupeSetting == 1 && EndlessEnabledSetting == 0:
-		if Util.floor_number > 4:
+		if Util.floor_number % 10 == 0:
 			ItemService.seen_items.clear()
+	elif DupeSetting == 2 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 20 == 0:
+			ItemService.seen_items.clear()
+	elif DupeSetting == 3 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 25 == 0:
+			ItemService.seen_items.clear()
+	elif DupeSetting == 4 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 50 == 0:
+			ItemService.seen_items.clear()
+	elif DupeSetting == 5 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 100 == 0:
+			ItemService.seen_items.clear()
+	elif DupeSetting == 7 && EndlessEnabledSetting == 0:
+		ItemService.seen_items.clear()
 		
 	# Save progress at every elevator scene
 	await Task.delay(0.1)
@@ -77,7 +90,29 @@ func start_game_floor(floor_var : FloorVariant) -> void:
 
 ## Selects 3 random floors to give to the player
 func get_next_floors() -> void:
-	if Util.floor_number > 4 && Util.floor_number % 5 == 0:
+	# Start of Manager Schenanigans -cm37
+	if EndlessEnabledSetting == 1:
+		if Util.floor_number > 4:
+			final_boss_time_baby()
+	elif DupeSetting == 0 && EndlessEnabledSetting == 0:
+		if Util.floor_number > 4 && Util.floor_number % 5 == 0:
+			final_boss_time_baby()
+	elif DupeSetting == 1 && EndlessEnabledSetting == 0:
+		if Util.floor_number > 4 && Util.floor_number % 10 == 0:
+			final_boss_time_baby()
+	elif DupeSetting == 2 && EndlessEnabledSetting == 0:
+		if Util.floor_number > 4 && Util.floor_number % 20 == 0:
+			final_boss_time_baby()
+	elif DupeSetting == 3 && EndlessEnabledSetting == 0:
+		if Util.floor_number > 4 && Util.floor_number % 25 == 0:
+			final_boss_time_baby()
+	elif DupeSetting == 4 && EndlessEnabledSetting == 0:
+		if Util.floor_number > 4 && Util.floor_number % 50 == 0:
+			final_boss_time_baby()
+	elif DupeSetting == 5 && EndlessEnabledSetting == 0:
+		if Util.floor_number > 4 && Util.floor_number % 100 == 0:
+			final_boss_time_baby()
+	elif DupeSetting == 6 && EndlessEnabledSetting == 0:
 		final_boss_time_baby()
 	var floor_variants := Globals.FLOOR_VARIANTS
 	var taken_items: Array[String] = []
@@ -100,7 +135,17 @@ func get_next_floors() -> void:
 
 func final_boss_time_baby() -> void:
 	var final_floor := FINAL_FLOOR_VARIANT.duplicate()
-	final_floor.level_range = Vector2i((9 * (Util.floor_number / 5)), (14 * (Util.floor_number / 5)))
+	if EndlessDifficultySetting == 1 && EndlessEnabledSetting == 0 && Util.floor_number > 5:
+		DifficultyMultiplier = 1.25
+	elif EndlessDifficultySetting == 2 && EndlessEnabledSetting == 0 && Util.floor_number > 5:
+		DifficultyMultiplier = 1.5
+	elif EndlessDifficultySetting == 3 && EndlessEnabledSetting == 0 && Util.floor_number > 5:
+		DifficultyMultiplier = 2
+	elif EndlessDifficultySetting == 4 && EndlessEnabledSetting == 0 && Util.floor_number > 5:
+		DifficultyMultiplier = 0.75
+	else:
+		DifficultyMultiplier = 1
+	final_floor.level_range = Vector2i(ceili(9 * (Util.floor_number * (0.2 * DifficultyMultiplier))), ceili(14 * (Util.floor_number * (0.2 * DifficultyMultiplier))))
 	next_floors = [final_floor]
 	$ElevatorUI.floors = next_floors
 	$ElevatorUI.set_floor_index(0)

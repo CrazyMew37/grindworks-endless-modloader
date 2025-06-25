@@ -1,13 +1,27 @@
 extends Object
 
+var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
+var EndlessDifficultySetting = SettingsConfig.data["endlessdifficulty"]
+var DifficultyMultiplier = 1
+
 func _ready(chain: ModLoaderHookChain) -> void:
+	if EndlessDifficultySetting == 1 && Util.floor_number > 5:
+		DifficultyMultiplier = 5
+	elif EndlessDifficultySetting == 2 && Util.floor_number > 5:
+		DifficultyMultiplier = 6
+	elif EndlessDifficultySetting == 3 && Util.floor_number > 5:
+		DifficultyMultiplier = 8
+	elif EndlessDifficultySetting == 4 && Util.floor_number > 5:
+		DifficultyMultiplier = 3
+	else:
+		DifficultyMultiplier = 4
 	Globals.s_entered_barrel_room.emit()
 
 	chain.reference_object.set_caged_toon_dna(chain.reference_object.get_caged_toon_dna())
 	AudioManager.set_music(chain.reference_object.MUSIC_TRACK)
 	# Set their level! Gonna mimic Buck here. -cm37
 	# Pick the first boss
-	chain.reference_object.boss_cog.level = Util.floor_number * 4
+	chain.reference_object.boss_cog.level = Util.floor_number * DifficultyMultiplier
 	var boss_choices = chain.reference_object.possible_bosses.duplicate()
 	if chain.reference_object.DEBUG_FORCE_BOSS_ONE != null and OS.is_debug_build() and chain.reference_object.WANT_DEBUG_BOSSES:
 		chain.reference_object.boss_one_choice = chain.reference_object.DEBUG_FORCE_BOSS_ONE
@@ -17,7 +31,7 @@ func _ready(chain: ModLoaderHookChain) -> void:
 	boss_choices.erase(chain.reference_object.boss_one_choice)
 
 	# Pick the second boss
-	chain.reference_object.boss_cog_2.level = Util.floor_number * 4
+	chain.reference_object.boss_cog_2.level = Util.floor_number * DifficultyMultiplier
 	if chain.reference_object.DEBUG_FORCE_BOSS_TWO != null and OS.is_debug_build() and chain.reference_object.WANT_DEBUG_BOSSES:
 		chain.reference_object.boss_two_choice = chain.reference_object.DEBUG_FORCE_BOSS_TWO
 	else:
@@ -44,7 +58,17 @@ func _ready(chain: ModLoaderHookChain) -> void:
 	chain.reference_object.boss_cog_2.stats.hp_changed.connect(chain.reference_object.on_boss_hp_changed)
 
 func fill_elevator(chain: ModLoaderHookChain, cog_count: int, dna: CogDNA = null) -> Array[Cog]:
-	var COG_EXTENDED_RANGE = chain.reference_object.COG_LEVEL_RANGE * (Util.floor_number * 0.2)
+	if EndlessDifficultySetting == 1 && Util.floor_number > 5:
+		DifficultyMultiplier = 0.25
+	elif EndlessDifficultySetting == 2 && Util.floor_number > 5:
+		DifficultyMultiplier = 0.3
+	elif EndlessDifficultySetting == 3 && Util.floor_number > 5:
+		DifficultyMultiplier = 0.4
+	elif EndlessDifficultySetting == 4 && Util.floor_number > 5:
+		DifficultyMultiplier = 0.15
+	else:
+		DifficultyMultiplier = 0.2
+	var COG_EXTENDED_RANGE = Vector2i(ceili(9 * (Util.floor_number * DifficultyMultiplier)), ceili(14 * (Util.floor_number * DifficultyMultiplier)))
 	var roll_for_proxies : bool = SaveFileService.progress_file.proxies_unlocked and chain.reference_object.darkened_sky
 	var new_cogs: Array[Cog]
 	for i in cog_count:

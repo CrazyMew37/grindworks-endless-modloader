@@ -4,6 +4,8 @@ extends "res://objects/general_ui/settings_menu/settings_menu.gd"
 var EndlessEnabledButton : GeneralButton
 var DupeButton : GeneralButton
 var SpeedCapButton : GeneralButton
+var ManagerFrequencyButton : GeneralButton
+var EndlessDifficultyButton : GeneralButton
 
 var Pla : Player
 
@@ -11,6 +13,8 @@ var endlessenabledId : int
 var dupeId : int
 var speedcapId : int
 var overwritebattlespeedId : int
+var managerfrequencyId : int
+var endlessdifficultyId : int
 
 const EndlessEnabledSetting : Dictionary = {
 	0 : "On",
@@ -19,8 +23,13 @@ const EndlessEnabledSetting : Dictionary = {
 
 const DupeSetting : Dictionary = {
 	0 : "Every 5 Floors",
-	1 : "Every Floor",
-	2 : "No Duplicates",
+	1 : "Every 10 Floors",
+	2 : "Every 20 Floors",
+	3 : "Every 25 Floors",
+	4 : "Every 50 Floors",
+	5 : "Every 100 Floors",
+	6 : "No Duplicates",
+	7 : "Every Floor",
 }
 
 const SpeedCapSetting : Dictionary = {
@@ -35,6 +44,24 @@ const SpeedCapSetting : Dictionary = {
 
 var OverwriteBattleSpeedSetting = [1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0]
 
+const ManagerFrequencySetting : Dictionary = {
+	0 : "Every 5 Floors",
+	1 : "Every 10 Floors",
+	2 : "Every 20 Floors",
+	3 : "Every 25 Floors",
+	4 : "Every 50 Floors",
+	5 : "Every 100 Floors",
+	6 : "Every Floor",
+}
+
+const EndlessDifficultySetting : Dictionary = {
+	0 : "Normal (2/3x)",
+	1 : "Hard (2.5/3.5x)",
+	2 : "Very Hard (3/4x)",
+	3 : "Extreme (4/6x)",
+	4 : "Easy (1.5/2.5x)",
+}
+
 func _ready() -> void:
 	super()
 	var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings").data
@@ -42,6 +69,8 @@ func _ready() -> void:
 	dupeId = SettingsConfig["dupes"]
 	speedcapId = SettingsConfig["speedcap"]
 	overwritebattlespeedId = SettingsConfig["overwritebattlespeed"]
+	managerfrequencyId = SettingsConfig["managerfrequency"]
+	endlessdifficultyId = SettingsConfig["endlessdifficulty"]
 
 	var DupeMenuResource = load("res://mods-unpacked/CrazyMew37-EndlessMode/dupe_settings.tscn")
 	var DupeMenu = DupeMenuResource.instantiate()
@@ -52,14 +81,20 @@ func _ready() -> void:
 	EndlessEnabledButton = DupeMenu.get_node("%EndlessEnabledButton")
 	DupeButton = DupeMenu.get_node("%DupeButton")
 	SpeedCapButton = DupeMenu.get_node("%SpeedCapButton")
+	ManagerFrequencyButton = DupeMenu.get_node("%ManagerFrequencyButton")
+	EndlessDifficultyButton = DupeMenu.get_node("%EndlessDifficultyButton")
 	
 	EndlessEnabledButton.text = EndlessEnabledSetting[endlessenabledId]
 	DupeButton.text = DupeSetting[dupeId]
 	SpeedCapButton.text = SpeedCapSetting[speedcapId]
+	ManagerFrequencyButton.text = ManagerFrequencySetting[managerfrequencyId]
+	EndlessDifficultyButton.text = EndlessDifficultySetting[endlessdifficultyId]
 
 	EndlessEnabledButton.connect("pressed", endlessenabled)
 	DupeButton.connect("pressed", dupe)
 	SpeedCapButton.connect("pressed", speedcap)
+	ManagerFrequencyButton.connect("pressed", managerfrequency)
+	EndlessDifficultyButton.connect("pressed", endlessdifficulty)
 
 func endlessenabled() -> void:
 	endlessenabledId += 1
@@ -78,6 +113,18 @@ func speedcap() -> void:
 	if speedcapId >= len(SpeedCapSetting):
 		speedcapId = 0
 	SpeedCapButton.text = SpeedCapSetting[speedcapId]
+	
+func managerfrequency() -> void:
+	managerfrequencyId += 1
+	if managerfrequencyId >= len(ManagerFrequencySetting):
+		managerfrequencyId = 0
+	ManagerFrequencyButton.text = ManagerFrequencySetting[managerfrequencyId]
+	
+func endlessdifficulty() -> void:
+	endlessdifficultyId += 1
+	if endlessdifficultyId >= len(EndlessDifficultySetting):
+		endlessdifficultyId = 0
+	EndlessDifficultyButton.text = EndlessDifficultySetting[endlessdifficultyId]
 
 # TIME TO HIJACK THE BATTLE SPEED! MWAHAHAHAHA!!! -cm37
 func _sync_gameplay_settings() -> void:
@@ -115,6 +162,8 @@ func close(save := false) -> void:
 			"dupes": dupeId,
 			"speedcap": speedcapId,
 			"overwritebattlespeed": overwritebattlespeedId,
+			"managerfrequency": managerfrequencyId,
+			"endlessdifficulty": endlessdifficultyId,
 		}
 		ModLoaderConfig.update_config(endlessConfig)
 		ModLoaderConfig.refresh_current_configs()

@@ -1,5 +1,8 @@
 extends Object
 
+var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
+var EndlessDifficultySetting = SettingsConfig.data["endlessdifficulty"]
+
 func randomize_details(chain: ModLoaderHookChain) -> void:
 	chain.reference_object.clear()
 	
@@ -33,5 +36,22 @@ func randomize_details(chain: ModLoaderHookChain) -> void:
 # i did it dad -cm37
 # but in all honestly why the hell does the base endless range do 9/15*x^(1/3)? There's a big jump in level and this formula makes more sense. -cm37
 func get_calculated_level_range(chain: ModLoaderHookChain, difficulty: int) -> Vector2i:
-	var base_range := Vector2i(ceili(((Util.floor_number + 1) * 2)), ceili((Util.floor_number + 1) * 3))
+	var LowMultiplier = 2
+	var HighMultiplier = 3
+	if EndlessDifficultySetting == 0:
+		LowMultiplier = 2
+		HighMultiplier = 3
+	elif EndlessDifficultySetting == 1:
+		LowMultiplier = 2.5
+		HighMultiplier = 3.5
+	elif EndlessDifficultySetting == 2:
+		LowMultiplier = 3
+		HighMultiplier = 4
+	elif EndlessDifficultySetting == 3:
+		LowMultiplier = 4
+		HighMultiplier = 6
+	elif EndlessDifficultySetting == 4:
+		LowMultiplier = 1.5
+		HighMultiplier = 2.5
+	var base_range := Vector2i(ceili(((Util.floor_number + 1) * LowMultiplier)), ceili((Util.floor_number + 1) * HighMultiplier))
 	return base_range
