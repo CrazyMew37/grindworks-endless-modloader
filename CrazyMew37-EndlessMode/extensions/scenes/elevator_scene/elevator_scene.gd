@@ -94,25 +94,25 @@ func get_next_floors() -> void:
 	if EndlessEnabledSetting == 1:
 		if Util.floor_number > 4:
 			final_boss_time_baby()
-	elif DupeSetting == 0 && EndlessEnabledSetting == 0:
+	elif ManagerFrequencySetting == 0 && EndlessEnabledSetting == 0:
 		if Util.floor_number > 4 && Util.floor_number % 5 == 0:
 			final_boss_time_baby()
-	elif DupeSetting == 1 && EndlessEnabledSetting == 0:
+	elif ManagerFrequencySetting == 1 && EndlessEnabledSetting == 0:
 		if Util.floor_number > 4 && Util.floor_number % 10 == 0:
 			final_boss_time_baby()
-	elif DupeSetting == 2 && EndlessEnabledSetting == 0:
+	elif ManagerFrequencySetting == 2 && EndlessEnabledSetting == 0:
 		if Util.floor_number > 4 && Util.floor_number % 20 == 0:
 			final_boss_time_baby()
-	elif DupeSetting == 3 && EndlessEnabledSetting == 0:
+	elif ManagerFrequencySetting == 3 && EndlessEnabledSetting == 0:
 		if Util.floor_number > 4 && Util.floor_number % 25 == 0:
 			final_boss_time_baby()
-	elif DupeSetting == 4 && EndlessEnabledSetting == 0:
+	elif ManagerFrequencySetting == 4 && EndlessEnabledSetting == 0:
 		if Util.floor_number > 4 && Util.floor_number % 50 == 0:
 			final_boss_time_baby()
-	elif DupeSetting == 5 && EndlessEnabledSetting == 0:
+	elif ManagerFrequencySetting == 5 && EndlessEnabledSetting == 0:
 		if Util.floor_number > 4 && Util.floor_number % 100 == 0:
 			final_boss_time_baby()
-	elif DupeSetting == 6 && EndlessEnabledSetting == 0:
+	elif ManagerFrequencySetting == 6 && EndlessEnabledSetting == 0:
 		final_boss_time_baby()
 	var floor_variants := Globals.FLOOR_VARIANTS
 	var taken_items: Array[String] = []
