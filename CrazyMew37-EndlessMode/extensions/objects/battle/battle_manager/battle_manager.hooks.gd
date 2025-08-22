@@ -4,7 +4,43 @@ var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endle
 var overwritebattlespeedId = SettingsConfig.data["overwritebattlespeed"]
 var OverwriteBattleSpeedSetting = [1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0]
 
+func vanilla_781300341_begin_turn(chain: ModLoaderHookChain):
+	# Hide Battle UI
+	chain.reference_object.battle_ui.hide()
+	apply_battle_speed()
+	chain.reference_object.current_round += 1
+	chain.reference_object.is_round_ongoing = true
+	# Inject partner moves before player's
+	for partner in Util.get_player().partners:
+		chain.reference_object.inject_battle_action(partner.get_attack(), 0)
+	# Get actions from every Cog
+	for cog in chain.reference_object.cogs:
+		for i in cog.stats.turns:
+			var attack = chain.reference_object.get_cog_attack(cog)
+			if not attack == null:
+				chain.reference_object.append_action(attack)
+	chain.reference_object.s_round_started.emit(chain.reference_object.round_actions)
+	await chain.reference_object.run_actions()
+	chain.reference_object.round_over()
+
 # Makes it so that the game only uses the BattleSpeed that the mod overwrites. -cm37
-func apply_battle_speed(chain: ModLoaderHookChain) -> void:
+func vanilla_781300341_apply_battle_speed() -> void:
 	# Set the engine speed scale to the battle speed setting
 	Engine.time_scale = OverwriteBattleSpeedSetting[overwritebattlespeedId]
+
+
+# ModLoader Hooks - The following code has been automatically added by the Godot Mod Loader.
+
+
+func begin_turn(chain: ModLoaderHookChain):
+	if _ModLoaderHooks.any_mod_hooked:
+		return await _ModLoaderHooks.call_hooks_async(vanilla_781300341_begin_turn, [chain], 3943360578)
+	else:
+		return await vanilla_781300341_begin_turn(chain)
+
+
+func apply_battle_speed():
+	if _ModLoaderHooks.any_mod_hooked:
+		_ModLoaderHooks.call_hooks(vanilla_781300341_apply_battle_speed, [], 1063569126)
+	else:
+		vanilla_781300341_apply_battle_speed()
