@@ -76,8 +76,8 @@ func clamp_stat(chain: ModLoaderHookChain, stat: String, amount: float) -> float
 	match stat:
 		'speed':
 			if amount < SPEED_SETTING_STAT or SpeedCapSetting == 5:
-				return amount
+				return max(amount, 0.7)
 			else:
-				return SPEED_SETTING_STAT
+				return clamp(amount, 0.7, SPEED_SETTING_STAT)
 		_:
 			return clamped_amount
