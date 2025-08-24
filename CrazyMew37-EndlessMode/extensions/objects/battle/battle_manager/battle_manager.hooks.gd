@@ -7,7 +7,7 @@ var OverwriteBattleSpeedSetting = [1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 4.0, 5.0
 func begin_turn(chain: ModLoaderHookChain):
 	# Hide Battle UI
 	chain.reference_object.battle_ui.hide()
-	apply_battle_speed()
+	chain.reference_object.apply_battle_speed()
 	chain.reference_object.current_round += 1
 	chain.reference_object.is_round_ongoing = true
 	# Inject partner moves before player's
@@ -24,6 +24,6 @@ func begin_turn(chain: ModLoaderHookChain):
 	chain.reference_object.round_over()
 
 # Makes it so that the game only uses the BattleSpeed that the mod overwrites. -cm37
-func apply_battle_speed() -> void:
+func apply_battle_speed(chain: ModLoaderHookChain) -> void:
 	# Set the engine speed scale to the battle speed setting
 	Engine.time_scale = OverwriteBattleSpeedSetting[overwritebattlespeedId]
