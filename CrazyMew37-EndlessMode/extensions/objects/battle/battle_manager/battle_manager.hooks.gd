@@ -2,7 +2,7 @@ extends Object
 
 var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
 var overwritebattlespeedId = SettingsConfig.data["overwritebattlespeed"]
-var OverwriteBattleSpeedSetting = [1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0, 25.0, 50.0]
+var OverwriteBattleSpeedSetting = [1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0, 15.0, 20.0, 25.0]
 
 func begin_turn(chain: ModLoaderHookChain):
 	# Hide Battle UI
