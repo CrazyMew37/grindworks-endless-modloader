@@ -41,25 +41,26 @@ func _ready():
 	
 	# Obliterate those seen items. -cm37
 	if DupeSetting == 0 && EndlessEnabledSetting == 0:
-		if Util.floor_number % 5 == 0:
+		if Util.floor_number % 5 == 0 && Util.floor_number > 4:
 			ItemService.seen_items.clear()
 	elif DupeSetting == 1 && EndlessEnabledSetting == 0:
-		if Util.floor_number % 10 == 0:
+		if Util.floor_number % 10 == 0 && Util.floor_number > 4:
 			ItemService.seen_items.clear()
 	elif DupeSetting == 2 && EndlessEnabledSetting == 0:
-		if Util.floor_number % 20 == 0:
+		if Util.floor_number % 20 == 0 && Util.floor_number > 4:
 			ItemService.seen_items.clear()
 	elif DupeSetting == 3 && EndlessEnabledSetting == 0:
-		if Util.floor_number % 25 == 0:
+		if Util.floor_number % 25 == 0 && Util.floor_number > 4:
 			ItemService.seen_items.clear()
 	elif DupeSetting == 4 && EndlessEnabledSetting == 0:
-		if Util.floor_number % 50 == 0:
+		if Util.floor_number % 50 == 0 && Util.floor_number > 4:
 			ItemService.seen_items.clear()
 	elif DupeSetting == 5 && EndlessEnabledSetting == 0:
-		if Util.floor_number % 100 == 0:
+		if Util.floor_number % 100 == 0 && Util.floor_number > 4:
 			ItemService.seen_items.clear()
 	elif DupeSetting == 7 && EndlessEnabledSetting == 0:
-		ItemService.seen_items.clear()
+		if Util.floor_number > 4:
+			ItemService.seen_items.clear()
 		
 	# Save progress at every elevator scene
 	await Task.delay(0.1)
