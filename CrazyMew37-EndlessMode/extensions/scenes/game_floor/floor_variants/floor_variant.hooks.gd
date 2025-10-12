@@ -6,7 +6,7 @@ var EndlessDifficultySetting = SettingsConfig.data["endlessdifficulty"]
 func randomize_details(chain: ModLoaderHookChain, roll_anomalies := true) -> void:
 	chain.reference_object.clear()
 	
-	if chain.reference_object.roll_anomalies:
+	if roll_anomalies:
 		chain.reference_object.anomalies = chain.reference_object.get_anomalies()
 	chain.reference_object.anomaly_count = chain.reference_object.anomalies.size()
 
