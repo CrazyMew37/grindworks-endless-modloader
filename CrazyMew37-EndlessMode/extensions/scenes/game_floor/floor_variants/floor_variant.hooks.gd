@@ -40,7 +40,7 @@ func randomize_details(chain: ModLoaderHookChain, roll_anomalies := true) -> voi
 ## You modders can do that one yourselves I believe in you
 # i did it dad -cm37
 # but in all honestly why the hell does the base endless range do 9/15*x^(1/3)? There's a big jump in level and this formula makes more sense. -cm37
-func get_calculated_level_range() -> Vector2i:
+func get_calculated_level_range(_chain: ModLoaderHookChain, _difficulty: int) -> Vector2i:
 	var LowMultiplier = 2
 	var HighMultiplier = 3
 	if EndlessDifficultySetting == 0:
