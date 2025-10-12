@@ -57,6 +57,8 @@ func install_script_hook_files() -> void:
 	ModLoaderMod.install_script_hooks("res://objects/battle/battle_node/dynamic/battle_node_dynamic.gd", extensions_dir_path.path_join("objects/battle/battle_node/dynamic/battle_node_dynamic.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://objects/battle/battle_resources/stats.gd", extensions_dir_path.path_join("objects/battle/battle_resources/stats.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://objects/battle/battle_manager/battle_manager.gd", extensions_dir_path.path_join("objects/battle/battle_manager/battle_manager.hooks.gd"))
+	ModLoaderMod.install_script_hooks("res://objects/quests/types/quest_cog.gd", extensions_dir_path.path_join("objects/quests/types/quest_cog.hooks.gd"))
+	ModLoaderMod.install_script_hooks("res://scenes/stranger_shop/stranger_shop.gd", extensions_dir_path.path_join("scenes/stranger_shop/stranger_shop.hooks.gd"))
 
 func add_translations() -> void:
 	# ! Place all of your translation files into this directory

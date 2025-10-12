@@ -154,21 +154,18 @@ func change_speed() -> void:
 # It was way, WAY too hard to make the speed cap update live. Thank god I found a way. -cm37
 func close(save := false) -> void:
 	super(save)
-	if prev_file and not save:
-		ModLoaderConfig.refresh_current_configs()
-	else:
-		var endlessConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
-		endlessConfig.data = {
-			"endlessenabled": endlessenabledId,
-			"dupes": dupeId,
-			"speedcap": speedcapId,
-			"overwritebattlespeed": overwritebattlespeedId,
-			"managerfrequency": managerfrequencyId,
-			"endlessdifficulty": endlessdifficultyId,
-		}
-		ModLoaderConfig.update_config(endlessConfig)
-		ModLoaderConfig.refresh_current_configs()
-		if not is_instance_valid(SceneLoader.current_scene):
-			var PauseChange = get_node("/root/PauseMenu")
-			PauseChange.apply_stat_labels()
-			PauseChange.apply_stat_changes()
+	var endlessConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
+	endlessConfig.data = {
+		"endlessenabled": endlessenabledId,
+		"dupes": dupeId,
+		"speedcap": speedcapId,
+		"overwritebattlespeed": overwritebattlespeedId,
+		"managerfrequency": managerfrequencyId,
+		"endlessdifficulty": endlessdifficultyId,
+	}
+	ModLoaderConfig.update_config(endlessConfig)
+	ModLoaderConfig.refresh_current_configs()
+	var PauseChange = get_node("/root/PauseMenu")
+	if PauseChange:
+		PauseChange.apply_stat_labels()
+		PauseChange.apply_stat_changes()

@@ -118,13 +118,13 @@ func get_next_floors() -> void:
 	var floor_variants := Globals.FLOOR_VARIANTS
 	var taken_items: Array[String] = []
 	for i in 3:
-		var new_floor := floor_variants[RandomService.randi_channel('floors') % floor_variants.size()]
+		var new_floor := floor_variants[RNG.channel(RNG.ChannelFloors).randi() % floor_variants.size()]
 		floor_variants.erase(new_floor)
-		new_floor = new_floor.duplicate()
+		new_floor = new_floor.duplicate(true)
 		
 		# Roll for alt floor
-		if new_floor.alt_floor and RandomService.randi_channel('floors') % ALT_FLOOR_CHANCE == 0:
-			new_floor = new_floor.alt_floor.duplicate()
+		if new_floor.alt_floor and RNG.channel(RNG.ChannelFloors).randf() < ALT_FLOOR_CHANCE:
+			new_floor = new_floor.alt_floor.duplicate(true)
 		
 		new_floor.randomize_details()
 		while not new_floor.reward or new_floor.reward.item_name in taken_items:

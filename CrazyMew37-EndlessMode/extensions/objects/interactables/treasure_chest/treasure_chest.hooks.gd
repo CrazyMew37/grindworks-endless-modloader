@@ -14,6 +14,10 @@ func assign_item(chain: ModLoaderHookChain, world_item: WorldItem):
 			scripted_item.stats_add['hp'] = 8
 		world_item.item = scripted_item
 		return
+	if chain.reference_object.CommandOverrideItem:
+		chain.reference_object.world_item.item = chain.reference_object.CommandOverrideItem
+		chain.reference_object.CommandOverrideItem = null
+		return
 	if chain.reference_object.override_item:
 		chain.reference_object.world_item.item = chain.reference_object.override_item
 		return

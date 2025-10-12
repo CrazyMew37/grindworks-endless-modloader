@@ -61,6 +61,7 @@ texture_pressed = ExtResource("9_0mru3")
 texture_hover = ExtResource("10_odtg5")
 texture_disabled = ExtResource("9_0mru3")
 text = "On"
+font_size = 18.0
 
 [node name="Label" parent="VideoSettings/EndlessEnabledSetting/EndlessEnabledButton" index="0"]
 text = "On"
@@ -86,6 +87,7 @@ texture_pressed = ExtResource("9_0mru3")
 texture_hover = ExtResource("10_odtg5")
 texture_disabled = ExtResource("9_0mru3")
 text = "Every 5 Floors"
+font_size = 18.0
 
 [node name="Label" parent="VideoSettings/DupeSetting/DupeButton" index="0"]
 text = "Every 5 Floors"
@@ -111,6 +113,7 @@ texture_pressed = ExtResource("9_0mru3")
 texture_hover = ExtResource("10_odtg5")
 texture_disabled = ExtResource("9_0mru3")
 text = "200%"
+font_size = 18.0
 
 [node name="Label" parent="VideoSettings/SpeedCapSetting/SpeedCapButton" index="0"]
 text = "200%"
@@ -136,6 +139,7 @@ texture_pressed = ExtResource("9_0mru3")
 texture_hover = ExtResource("10_odtg5")
 texture_disabled = ExtResource("9_0mru3")
 text = "Every 5 Floors"
+font_size = 18.0
 
 [node name="Label" parent="VideoSettings/ManagerFrequencySetting/ManagerFrequencyButton" index="0"]
 text = "Every 5 Floors"
@@ -161,6 +165,7 @@ texture_pressed = ExtResource("9_0mru3")
 texture_hover = ExtResource("10_odtg5")
 texture_disabled = ExtResource("9_0mru3")
 text = "Normal (2/3x)"
+font_size = 18.0
 
 [node name="Label" parent="VideoSettings/EndlessDifficultySetting/EndlessDifficultyButton" index="0"]
 text = "Normal (2/3x)"

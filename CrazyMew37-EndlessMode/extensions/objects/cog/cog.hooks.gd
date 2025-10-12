@@ -8,7 +8,7 @@ func roll_for_level(chain: ModLoaderHookChain) -> void:
 			chain.reference_object.custom_level_range = Util.floor_manager.level_range
 		elif chain.reference_object.dna: 
 			chain.reference_object.custom_level_range = Vector2i(chain.reference_object.dna.level_low, chain.reference_object.dna.level_high)
-		chain.reference_object.level = RandomService.randi_range_channel('cog_levels', chain.reference_object.custom_level_range.x, chain.reference_object.custom_level_range.y)
+		chain.reference_object.level = RNG.channel(RNG.ChannelCogLevels).randi_range(chain.reference_object.custom_level_range.x, chain.reference_object.custom_level_range.y)
 	
 	# Allow for Cogs to be higher level than the floor intends
 	if sign( chain.reference_object.level_range_offset) == 1:
@@ -36,7 +36,7 @@ func set_up_stats(chain: ModLoaderHookChain) -> void:
 		chain.reference_object.stats.max_hp = ceili(chain.reference_object.stats.max_hp * chain.reference_object.health_mod)
 	chain.reference_object.stats.hp = chain.reference_object.stats.max_hp
 	chain.reference_object.stats.evasiveness = 0.5 + (chain.reference_object.level * 0.05)
-	chain.reference_object.stats.damage = 0.4 + (chain.reference_object.level * 0.1)
+	chain.reference_object.stats.damage = 0.4 + (chain.reference_object.level * 0.13)
 	chain.reference_object.stats.accuracy = 0.75 + (chain.reference_object.level * 0.05)
 	var new_text: String = chain.reference_object.dna.cog_name + '\n'
 	new_text += 'Level ' + str(chain.reference_object.level)

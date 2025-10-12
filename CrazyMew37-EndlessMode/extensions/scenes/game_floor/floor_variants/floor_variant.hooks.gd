@@ -25,6 +25,10 @@ func randomize_details(chain: ModLoaderHookChain) -> void:
 	# Set the room cap to 29 to prevent a floor lasting like 72 hours or smth -cm37
 	if chain.reference_object.room_count > 29:
 		chain.reference_object.room_count = 29
+
+	# Slightly vary the facility lengths
+	var room_diff_roll := RNG.channel(RNG.ChannelRoomDiffRolls).randi_range(-2, 2)
+	chain.reference_object.room_count += 2 * room_diff_roll
 	
 	# Get the default Cog Pool if none specified
 	if not chain.reference_object.cog_pool:

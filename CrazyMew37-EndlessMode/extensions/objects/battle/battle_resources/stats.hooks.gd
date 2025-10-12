@@ -13,7 +13,9 @@ static var SPEED_SETTING_STAT = 2.0
 		if debug_invulnerable:
 			hp = max_hp
 		else:
-			hp = clamp(x, 0, max_hp)
+			match allow_overheal:
+				true: hp = maxi(0, x)
+				_: hp = clamp(x, 0, max_hp)
 		hp_changed.emit(hp)
 @export var turns := 1
 var debug_invulnerable := false
@@ -29,6 +31,10 @@ signal s_defense_changed(new_defense: float)
 signal s_evasiveness_changed(new_evasiveness: float)
 signal s_speed_changed(new_speed: float)
 
+## Modifiers
+var allow_overheal := false
+
+
 func _to_string():
 	var return_string := "Stats: \n"
 	var active = false 
@@ -42,6 +48,7 @@ func _to_string():
 
 var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
 var SpeedCapSetting = SettingsConfig.data["speedcap"]
+
 func SetSpeedCap():
 	SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
 	SpeedCapSetting = SettingsConfig.data["speedcap"]
@@ -76,8 +83,8 @@ func clamp_stat(chain: ModLoaderHookChain, stat: String, amount: float) -> float
 	match stat:
 		'speed':
 			if amount < SPEED_SETTING_STAT or SpeedCapSetting == 5:
-				return max(amount, 0.7)
+				return amount
 			else:
-				return clamp(amount, 0.7, SPEED_SETTING_STAT)
+				return SPEED_SETTING_STAT
 		_:
 			return clamped_amount

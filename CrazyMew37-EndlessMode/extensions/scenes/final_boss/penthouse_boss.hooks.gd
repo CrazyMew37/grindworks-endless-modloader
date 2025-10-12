@@ -39,8 +39,8 @@ func _ready(chain: ModLoaderHookChain) -> void:
 	chain.reference_object.boss_cog_2.set_dna(chain.reference_object.boss_two_choice, false)
 
 	# Nerf their damage got damn!!!
-	chain.reference_object.boss_cog.stats.damage = 1.6
-	chain.reference_object.boss_cog_2.stats.damage = 1.6
+	chain.reference_object.boss_cog.stats.damage = 1.8
+	chain.reference_object.boss_cog_2.stats.damage = 1.8
 
 	# Start the battle
 	Util.get_player().state = Player.PlayerState.WALK
