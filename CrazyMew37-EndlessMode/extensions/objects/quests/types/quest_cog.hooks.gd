@@ -52,7 +52,7 @@ func randomize_objective(chain: ModLoaderHookChain) -> void:
 	if RNG.channel(RNG.ChannelCogQuestTypes).randi() % 3 == 0:
 		if chain.reference_object.specific_cog:
 			chain.reference_object.min_level = RNG.channel(RNG.ChannelCogQuestTypes).randi_range(chain.reference_object.specific_cog.level_low + 1, chain.reference_object.specific_cog.level_low + 3)
-			if chain.reference_object.min_level > chain.reference_object.specific_cog.level_high or chain.reference_object.min_level > chain.reference_object.maximum_level: 
+			if chain.reference_object.min_level > chain.reference_object.specific_cog.level_high or chain.reference_object.min_level > maximum_level: 
 				chain.reference_object.min_level = 1
 		else:
 			chain.reference_object.min_level = RNG.channel(RNG.ChannelCogQuestTypes).randi_range(minimum_level, maximum_level)

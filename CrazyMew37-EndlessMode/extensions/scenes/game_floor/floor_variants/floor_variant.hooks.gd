@@ -3,10 +3,11 @@ extends Object
 var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
 var EndlessDifficultySetting = SettingsConfig.data["endlessdifficulty"]
 
-func randomize_details(chain: ModLoaderHookChain) -> void:
+func randomize_details(chain: ModLoaderHookChain, roll_anomalies := true) -> void:
 	chain.reference_object.clear()
 	
-	chain.reference_object.anomalies = chain.reference_object.get_anomalies()
+	if chain.reference_object.roll_anomalies:
+		chain.reference_object.anomalies = chain.reference_object.get_anomalies()
 	chain.reference_object.anomaly_count = chain.reference_object.anomalies.size()
 
 	for anomaly: Script in chain.reference_object.anomalies:
@@ -39,7 +40,7 @@ func randomize_details(chain: ModLoaderHookChain) -> void:
 ## You modders can do that one yourselves I believe in you
 # i did it dad -cm37
 # but in all honestly why the hell does the base endless range do 9/15*x^(1/3)? There's a big jump in level and this formula makes more sense. -cm37
-func get_calculated_level_range(chain: ModLoaderHookChain, difficulty: int) -> Vector2i:
+func get_calculated_level_range() -> Vector2i:
 	var LowMultiplier = 2
 	var HighMultiplier = 3
 	if EndlessDifficultySetting == 0:
