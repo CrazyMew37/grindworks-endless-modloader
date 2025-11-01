@@ -276,11 +276,11 @@ func on_load(_item: Item) -> void:
 
 func setup() -> void:
 	var player := Util.get_player()
-	player.stats.toonup_boost = 1.0
+	player.stats.toonup_boost = 2.0
 
 func on_item_removed() -> void:
 	var player := Util.get_player()
-	player.stats.toonup_boost = 0.0
+	player.stats.toonup_boost = 1.0
 "
 
 [resource]

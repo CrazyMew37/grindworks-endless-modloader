@@ -242,11 +242,11 @@ func on_load(_item: Item) -> void:
 
 func setup() -> void:
 	var player := Util.get_player()
-	player.stats.mod_cog_dmg_mult = 0.2
+	player.stats.mod_cog_dmg_mult = 1.2
 
 func on_item_removed() -> void:
 	var player := Util.get_player()
-	player.stats.mod_cog_dmg_mult = 0.0
+	player.stats.mod_cog_dmg_mult = 1.0
 "
 
 [resource]
@@ -260,9 +260,6 @@ item_name = "Aviators"
 item_description = "The bigger they are..."
 big_description = "+ 20% damage against Proxy Cogs."
 model = ExtResource("4_0yb83")
-stats_add = {
-"mod_cog_dmg_mult": 0.2
-}
 item_script = SubResource("GDScript_xw3dk")
 icon = ExtResource("3_ayta1")
 shop_category_color = Color(0.196078, 0.580392, 0.917647, 1)
