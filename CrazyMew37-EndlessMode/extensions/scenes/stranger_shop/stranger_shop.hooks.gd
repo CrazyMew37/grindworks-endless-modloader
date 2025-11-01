@@ -5,7 +5,7 @@ const OPENER_LINES_6 := [
 	"Welcome back. Got anythin interestin' to trade?",
 	"Usually, your kind only visits my place once.",
 	"I've restocked, as you can see.",
-	"Some somethin' more interestin' this time?",
+	"Got somethin' more interestin' this time?",
 	"I got more junk for a bargain. Don't worry, it's good junk.",
 	"Wonder if you're tryin' to find the foreman?"
 ]
@@ -22,7 +22,7 @@ const OPENER_LINES_11 := [
 const OPENER_LINES_21 := [
 	"Are you lost, or somethin'? Usually, people like you leave by now.",
 	"What'll it be this time?",
-	"You know, not many cogs come here. Not that I want em' here anyway.",
+	"You know, not many cogs come here. Not that I want em' here, anyway.",
 	"How do you store all of your stuff? Whatever, feel free to pull somethin' out.",
 	"You've been hordin' a lot of those sugary beans. Too bad I have no use for 'em.",
 	"You got plenty of stuff, it seems. Care to drop some here?",
