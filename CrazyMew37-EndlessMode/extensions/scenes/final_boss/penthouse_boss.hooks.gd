@@ -21,7 +21,7 @@ func _ready(chain: ModLoaderHookChain) -> void:
 	AudioManager.set_music(chain.reference_object.MUSIC_TRACK)
 	# Set their level! Gonna mimic Buck here. -cm37
 	# Pick the first boss
-	chain.reference_object.boss_cog.level = ceili(((Util.floor_number) * (DifficultyMultiplier + (floori((Util.floor_number - 1) / 8) / 2))))
+	chain.reference_object.boss_cog.level = ceili(((Util.floor_number) * (DifficultyMultiplier + (floori((Util.floor_number - 1) / 8)) / 2)))
 	var boss_choices = chain.reference_object.possible_bosses.duplicate()
 	if chain.reference_object.DEBUG_FORCE_BOSS_ONE != null and OS.is_debug_build() and chain.reference_object.WANT_DEBUG_BOSSES:
 		chain.reference_object.boss_one_choice = chain.reference_object.DEBUG_FORCE_BOSS_ONE
@@ -68,7 +68,7 @@ func fill_elevator(chain: ModLoaderHookChain, cog_count: int, dna: CogDNA = null
 		DifficultyMultiplier = 0.75
 	else:
 		DifficultyMultiplier = 1.0
-	var COG_EXTENDED_RANGE = Vector2i(ceili(0.7 * (((Util.floor_number) * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1) / 8) / 2))))) - 5 * floori((Util.floor_number + 5) / 10), ceili(0.7 * (((Util.floor_number) * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1) / 8) / 2))))))
+	var COG_EXTENDED_RANGE = Vector2i(ceili((Util.floor_number) * 0.7 * ((((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1) / 8) / 2))))) - 5 * floori((Util.floor_number + 5) / 10), ceili((Util.floor_number) * 0.7 * ((((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1) / 8) / 2))))))
 	var roll_for_proxies : bool = SaveFileService.progress_file.proxies_unlocked and chain.reference_object.darkened_sky
 	var new_cogs: Array[Cog]
 	for i in cog_count:
