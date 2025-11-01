@@ -21,7 +21,7 @@ func _ready(chain: ModLoaderHookChain) -> void:
 	AudioManager.set_music(chain.reference_object.MUSIC_TRACK)
 	# Set their level! Gonna mimic Buck here. -cm37
 	# Pick the first boss
-	chain.reference_object.boss_cog.level = Util.floor_number * DifficultyMultiplier
+	chain.reference_object.boss_cog.level = ceili(((Util.floor_number) * (DifficultyMultiplier + (floori((Util.floor_number - 1) / 8) / 2))))
 	var boss_choices = chain.reference_object.possible_bosses.duplicate()
 	if chain.reference_object.DEBUG_FORCE_BOSS_ONE != null and OS.is_debug_build() and chain.reference_object.WANT_DEBUG_BOSSES:
 		chain.reference_object.boss_one_choice = chain.reference_object.DEBUG_FORCE_BOSS_ONE
@@ -59,16 +59,16 @@ func _ready(chain: ModLoaderHookChain) -> void:
 
 func fill_elevator(chain: ModLoaderHookChain, cog_count: int, dna: CogDNA = null) -> Array[Cog]:
 	if EndlessDifficultySetting == 1 && Util.floor_number > 5:
-		DifficultyMultiplier = 0.25
+		DifficultyMultiplier = 1.25
 	elif EndlessDifficultySetting == 2 && Util.floor_number > 5:
-		DifficultyMultiplier = 0.3
+		DifficultyMultiplier = 1.5
 	elif EndlessDifficultySetting == 3 && Util.floor_number > 5:
-		DifficultyMultiplier = 0.4
+		DifficultyMultiplier = 2.0
 	elif EndlessDifficultySetting == 4 && Util.floor_number > 5:
-		DifficultyMultiplier = 0.15
+		DifficultyMultiplier = 0.75
 	else:
-		DifficultyMultiplier = 0.2
-	var COG_EXTENDED_RANGE = Vector2i(ceili(9 * (Util.floor_number * DifficultyMultiplier)), ceili(14 * (Util.floor_number * DifficultyMultiplier)))
+		DifficultyMultiplier = 1.0
+	var COG_EXTENDED_RANGE = Vector2i(ceili(0.7 * (((Util.floor_number) * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1) / 8) / 2))))) - 5 * floori((Util.floor_number + 5) / 10), ceili(0.7 * (((Util.floor_number) * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1) / 8) / 2))))))
 	var roll_for_proxies : bool = SaveFileService.progress_file.proxies_unlocked and chain.reference_object.darkened_sky
 	var new_cogs: Array[Cog]
 	for i in cog_count:

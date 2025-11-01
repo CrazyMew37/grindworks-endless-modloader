@@ -76,4 +76,7 @@ func _ready() -> void:
 			"overwritebattlespeed": 0,
 			"managerfrequency": 0,
 			"endlessdifficulty": 0,
+			"jellybeanwipe": 0,
+			"luckwipe": 0,
+			"speedwipe": 0,
 		})

@@ -6,6 +6,9 @@ var DupeSetting = SettingsConfig.data["dupes"]
 var ManagerFrequencySetting = SettingsConfig.data["managerfrequency"]
 var EndlessDifficultySetting = SettingsConfig.data["endlessdifficulty"]
 var DifficultyMultiplier = 1
+var JellybeanWipeSetting = SettingsConfig.data["jellybeanwipe"]
+var LuckWipeSetting = SettingsConfig.data["jellybeanwipe"]
+var SpeedWipeSetting = SettingsConfig.data["jellybeanwipe"]
 
 func _ready():
 	if EndlessEnabledSetting == 1 && Util.floor_number > 4:
@@ -61,6 +64,65 @@ func _ready():
 	elif DupeSetting == 7 && EndlessEnabledSetting == 0:
 		if Util.floor_number > 4:
 			ItemService.seen_items.clear()
+			
+	# Obliterate those dragon wings and bee wings. -cm37
+	# Note: The wipes happen a floor later than usual because of directors. -cm37
+	if JellybeanWipeSetting == 1 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 5 == 1 && Util.floor_number > 4:
+			player.stats.money = 0
+	elif JellybeanWipeSetting == 2 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 10 == 1 && Util.floor_number > 4:
+			player.stats.money = 0
+	elif JellybeanWipeSetting == 3 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 20 == 1 && Util.floor_number > 4:
+			player.stats.money = 0
+	elif JellybeanWipeSetting == 4 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 25 == 1 && Util.floor_number > 4:
+			player.stats.money = 0
+	elif JellybeanWipeSetting == 5 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 50 == 1 && Util.floor_number > 4:
+			player.stats.money = 0
+	elif JellybeanWipeSetting == 6 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 100 == 1 && Util.floor_number > 4:
+			player.stats.money = 0
+			
+	if LuckWipeSetting == 1 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 5 == 1 && Util.floor_number > 4:
+			player.stats.luck = 1.0
+	elif LuckWipeSetting == 2 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 10 == 1 && Util.floor_number > 4:
+			player.stats.luck = 1.0
+	elif LuckWipeSetting == 3 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 20 == 1 && Util.floor_number > 4:
+			player.stats.luck = 1.0
+	elif LuckWipeSetting == 4 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 25 == 1 && Util.floor_number > 4:
+			player.stats.luck = 1.0
+	elif LuckWipeSetting == 5 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 50 == 1 && Util.floor_number > 4:
+			player.stats.luck = 1.0
+	elif LuckWipeSetting == 6 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 100 == 1 && Util.floor_number > 4:
+			player.stats.luck = 1.0
+	
+	if SpeedWipeSetting == 1 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 5 == 1 && Util.floor_number > 4:
+			player.stats.speed = 1.0
+	elif SpeedWipeSetting == 2 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 10 == 1 && Util.floor_number > 4:
+			player.stats.speed = 1.0
+	elif SpeedWipeSetting == 3 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 20 == 1 && Util.floor_number > 4:
+			player.stats.speed = 1.0
+	elif SpeedWipeSetting == 4 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 25 == 1 && Util.floor_number > 4:
+			player.stats.speed = 1.0
+	elif SpeedWipeSetting == 5 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 50 == 1 && Util.floor_number > 4:
+			player.stats.speed = 1.0
+	elif SpeedWipeSetting == 6 && EndlessEnabledSetting == 0:
+		if Util.floor_number % 100 == 1 && Util.floor_number > 4:
+			player.stats.speed = 1.0
 		
 	# Save progress at every elevator scene
 	await Task.delay(0.1)
@@ -146,7 +208,7 @@ func final_boss_time_baby() -> void:
 		DifficultyMultiplier = 0.75
 	else:
 		DifficultyMultiplier = 1
-	final_floor.level_range = Vector2i(ceili(9 * (Util.floor_number * (0.2 * DifficultyMultiplier))), ceili(14 * (Util.floor_number * (0.2 * DifficultyMultiplier))))
+	final_floor.level_range = Vector2i(ceili(0.7 * (((Util.floor_number) * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1) / 8) / 2))))) - 5 * floori((Util.floor_number + 5) / 10), ceili(0.7 * (((Util.floor_number) * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1) / 8) / 2))))))
 	next_floors = [final_floor]
 	$ElevatorUI.floors = next_floors
 	$ElevatorUI.set_floor_index(0)

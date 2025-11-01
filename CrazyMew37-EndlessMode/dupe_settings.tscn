@@ -15,7 +15,7 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_n41hl"]
 font = ExtResource("5_uqkg8")
-font_size = 24
+font_size = 20
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vnbpc"]
@@ -124,7 +124,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VideoSettings/ManagerFrequencySetting"]
 layout_mode = 2
-text = "Ex. Office Freq:"
+text = "Executive Office 
+Frequency:"
 label_settings = SubResource("LabelSettings_n41hl")
 
 [node name="ManagerFrequencyButton" parent="VideoSettings/ManagerFrequencySetting" instance=ExtResource("6_r7b1s")]
@@ -171,8 +172,89 @@ font_size = 18.0
 text = "Normal (2/3x)"
 label_settings = SubResource("LabelSettings_xxrhd")
 
+[node name="JellybeanWipeSetting" type="HBoxContainer" parent="VideoSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VideoSettings/JellybeanWipeSetting"]
+layout_mode = 2
+text = "Wipe Jellybeans:"
+label_settings = SubResource("LabelSettings_n41hl")
+
+[node name="JellybeanWipeButton" parent="VideoSettings/JellybeanWipeSetting" instance=ExtResource("6_r7b1s")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_vnbpc")
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture_normal = ExtResource("8_qbjn4")
+texture_pressed = ExtResource("9_0mru3")
+texture_hover = ExtResource("10_odtg5")
+texture_disabled = ExtResource("9_0mru3")
+text = "Off"
+font_size = 18.0
+
+[node name="Label" parent="VideoSettings/JellybeanWipeSetting/JellybeanWipeButton" index="0"]
+text = "Off"
+label_settings = SubResource("LabelSettings_xxrhd")
+
+[node name="LuckWipeSetting" type="HBoxContainer" parent="VideoSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VideoSettings/LuckWipeSetting"]
+layout_mode = 2
+text = "Set Luck to 100%:"
+label_settings = SubResource("LabelSettings_n41hl")
+
+[node name="LuckWipeButton" parent="VideoSettings/LuckWipeSetting" instance=ExtResource("6_r7b1s")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_vnbpc")
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture_normal = ExtResource("8_qbjn4")
+texture_pressed = ExtResource("9_0mru3")
+texture_hover = ExtResource("10_odtg5")
+texture_disabled = ExtResource("9_0mru3")
+text = "Off"
+font_size = 18.0
+
+[node name="Label" parent="VideoSettings/LuckWipeSetting/LuckWipeButton" index="0"]
+text = "Off"
+label_settings = SubResource("LabelSettings_xxrhd")
+
+[node name="SpeedWipeSetting" type="HBoxContainer" parent="VideoSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VideoSettings/SpeedWipeSetting"]
+layout_mode = 2
+text = "Set Speed to 100%:"
+label_settings = SubResource("LabelSettings_n41hl")
+
+[node name="SpeedWipeButton" parent="VideoSettings/SpeedWipeSetting" instance=ExtResource("6_r7b1s")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_vnbpc")
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture_normal = ExtResource("8_qbjn4")
+texture_pressed = ExtResource("9_0mru3")
+texture_hover = ExtResource("10_odtg5")
+texture_disabled = ExtResource("9_0mru3")
+text = "Off"
+font_size = 18.0
+
+[node name="Label" parent="VideoSettings/SpeedWipeSetting/SpeedWipeButton" index="0"]
+text = "Off"
+label_settings = SubResource("LabelSettings_xxrhd")
+
 [editable path="VideoSettings/EndlessEnabledSetting/EndlessEnabledButton"]
 [editable path="VideoSettings/DupeSetting/DupeButton"]
 [editable path="VideoSettings/SpeedCapSetting/SpeedCapButton"]
 [editable path="VideoSettings/ManagerFrequencySetting/ManagerFrequencyButton"]
 [editable path="VideoSettings/EndlessDifficultySetting/EndlessDifficultyButton"]
+[editable path="VideoSettings/JellybeanWipeSetting/JellybeanWipeButton"]
+[editable path="VideoSettings/LuckWipeSetting/LuckWipeButton"]
+[editable path="VideoSettings/SpeedWipeSetting/SpeedWipeButton"]

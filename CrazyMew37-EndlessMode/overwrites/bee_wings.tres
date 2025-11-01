@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="ItemAccessory" load_steps=10 format=3 uid="uid://d2rbk611p17er"]
+
+[ext_resource type="Script" uid="uid://fb0tqfojo57q" path="res://objects/items/classes/accessory_placement.gd" id="1_yuchn"]
+[ext_resource type="Script" uid="uid://duxq3xtgnln43" path="res://objects/items/classes/body_placement.gd" id="2_kepmn"]
+[ext_resource type="Texture2D" uid="uid://dmrl0xv6df5ps" path="res://models/accessories/backpacks/bee_wings/bee_wings-pix-1.png" id="3_yj6ym"]
+[ext_resource type="Script" uid="uid://dbrp2pp7u5pit" path="res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/item_bee_wings.gd" id="4_yuchn"]
+[ext_resource type="PackedScene" uid="uid://dn2h7vcu3ysw5" path="res://models/accessories/backpacks/bee_wings/bee_wings.tscn" id="5_eondi"]
+[ext_resource type="Script" uid="uid://dvu24b3o8i3sj" path="res://objects/items/classes/item_accessory.gd" id="6_l5kri"]
+
+[sub_resource type="Resource" id="Resource_xqi40"]
+script = ExtResource("2_kepmn")
+position = Vector3(0, 0.58, 1.11)
+rotation = Vector3(0, 180, 0)
+scale = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="Resource" id="Resource_bsqs6"]
+script = ExtResource("2_kepmn")
+body_type = 1
+position = Vector3(0.01, 0.56, 0.77)
+rotation = Vector3(0, 180, 0)
+scale = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="Resource" id="Resource_n1he7"]
+script = ExtResource("2_kepmn")
+body_type = 2
+position = Vector3(0.01, 0.78, 0.84)
+rotation = Vector3(0, 180, 0)
+scale = Vector3(0.4, 0.4, 0.4)
+
+[resource]
+script = ExtResource("6_l5kri")
+accessory_placements = Array[ExtResource("1_yuchn")]([SubResource("Resource_xqi40"), SubResource("Resource_bsqs6"), SubResource("Resource_n1he7")])
+qualitoon = 2
+slot = 3
+world_scale = 0.15
+ui_cam_offset = 0.4
+item_name = "Bee Wings"
+item_description = "Sting like a bee..."
+big_description = "50% of base speed over 1.0 is added onto crit damage multiplier"
+model = ExtResource("5_eondi")
+item_script = ExtResource("4_yuchn")
+icon = ExtResource("3_yj6ym")
+shop_category_color = Color(0.196078, 0.580392, 0.917647, 1)

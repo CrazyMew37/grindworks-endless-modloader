@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="ItemAccessory" load_steps=10 format=3 uid="uid://csbyea7fb53cw"]
+
+[ext_resource type="Script" uid="uid://fb0tqfojo57q" path="res://objects/items/classes/accessory_placement.gd" id="1_tnm5i"]
+[ext_resource type="Script" uid="uid://duxq3xtgnln43" path="res://objects/items/classes/body_placement.gd" id="2_guu4t"]
+[ext_resource type="Texture2D" uid="uid://do0kl67778w6i" path="res://models/accessories/backpacks/spider_legs/tt_m_chr_avt_acc_pac_spiderLegs.glb-pix-1.png" id="3_vfgo4"]
+[ext_resource type="PackedScene" uid="uid://dkcpbjgbltmwx" path="res://models/accessories/backpacks/spider_legs/tt_m_chr_avt_acc_pac_spiderLegs.glb" id="4_ods4v"]
+[ext_resource type="Script" uid="uid://dvu24b3o8i3sj" path="res://objects/items/classes/item_accessory.gd" id="5_jbpu3"]
+
+[sub_resource type="Resource" id="Resource_6hrev"]
+script = ExtResource("2_guu4t")
+position = Vector3(0, 0.3, 1.18)
+rotation = Vector3(0, 180, 0)
+scale = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="Resource" id="Resource_uadw2"]
+script = ExtResource("2_guu4t")
+body_type = 1
+position = Vector3(0, 0.53, 1.13)
+rotation = Vector3(19.87, 180, 0)
+scale = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="Resource" id="Resource_u8oxf"]
+script = ExtResource("2_guu4t")
+body_type = 2
+position = Vector3(0, 0.65, 1)
+rotation = Vector3(-7.44, 180, 0)
+scale = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="GDScript" id="GDScript_tnm5i"]
+script/source = "extends ItemScript
+
+func on_collect(_item: Item, _object: Node3D) -> void:
+	setup()
+
+func on_load(_item: Item) -> void:
+	setup()
+
+func setup() -> void:
+	var player := Util.get_player()
+	player.stats.active_reserve_size = 1
+"
+
+[resource]
+script = ExtResource("5_jbpu3")
+accessory_placements = Array[ExtResource("1_tnm5i")]([SubResource("Resource_6hrev"), SubResource("Resource_uadw2"), SubResource("Resource_u8oxf")])
+qualitoon = 4
+slot = 3
+world_scale = 0.15
+item_name = "Spider Legs"
+item_description = "Some helping hands."
+big_description = "Allows you to hold an additional Pocket Prank."
+model = ExtResource("4_ods4v")
+item_script = SubResource("GDScript_tnm5i")
+icon = ExtResource("3_vfgo4")
+metadata/_custom_type_script = "uid://dvu24b3o8i3sj"

@@ -6,6 +6,9 @@ var DupeButton : GeneralButton
 var SpeedCapButton : GeneralButton
 var ManagerFrequencyButton : GeneralButton
 var EndlessDifficultyButton : GeneralButton
+var JellybeanWipeButton : GeneralButton
+var LuckWipeButton : GeneralButton
+var SpeedWipeButton : GeneralButton
 
 var Pla : Player
 
@@ -15,6 +18,9 @@ var speedcapId : int
 var overwritebattlespeedId : int
 var managerfrequencyId : int
 var endlessdifficultyId : int
+var jellybeanwipeId : int
+var luckwipeId : int
+var speedwipeId : int
 
 const EndlessEnabledSetting : Dictionary = {
 	0 : "On",
@@ -63,6 +69,36 @@ const EndlessDifficultySetting : Dictionary = {
 	4 : "Easy (1.5/2.5x)",
 }
 
+const JellybeanWipeSetting : Dictionary = {
+	0 : "Off",
+	1 : "Every 5 Floors",
+	2 : "Every 10 Floors",
+	3 : "Every 20 Floors",
+	4 : "Every 25 Floors",
+	5 : "Every 50 Floors",
+	6 : "Every 100 Floors",
+}
+
+const LuckWipeSetting : Dictionary = {
+	0 : "Off",
+	1 : "Every 5 Floors",
+	2 : "Every 10 Floors",
+	3 : "Every 20 Floors",
+	4 : "Every 25 Floors",
+	5 : "Every 50 Floors",
+	6 : "Every 100 Floors",
+}
+
+const SpeedWipeSetting : Dictionary = {
+	0 : "Off",
+	1 : "Every 5 Floors",
+	2 : "Every 10 Floors",
+	3 : "Every 20 Floors",
+	4 : "Every 25 Floors",
+	5 : "Every 50 Floors",
+	6 : "Every 100 Floors",
+}
+
 func _ready() -> void:
 	super()
 	var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings").data
@@ -72,6 +108,9 @@ func _ready() -> void:
 	overwritebattlespeedId = SettingsConfig["overwritebattlespeed"]
 	managerfrequencyId = SettingsConfig["managerfrequency"]
 	endlessdifficultyId = SettingsConfig["endlessdifficulty"]
+	jellybeanwipeId = SettingsConfig["jellybeanwipe"]
+	luckwipeId = SettingsConfig["luckwipe"]
+	speedwipeId = SettingsConfig["speedwipe"]
 
 	var DupeMenuResource = load("res://mods-unpacked/CrazyMew37-EndlessMode/dupe_settings.tscn")
 	var DupeMenu = DupeMenuResource.instantiate()
@@ -84,18 +123,27 @@ func _ready() -> void:
 	SpeedCapButton = DupeMenu.get_node("%SpeedCapButton")
 	ManagerFrequencyButton = DupeMenu.get_node("%ManagerFrequencyButton")
 	EndlessDifficultyButton = DupeMenu.get_node("%EndlessDifficultyButton")
+	JellybeanWipeButton = DupeMenu.get_node("%JellybeanWipeButton")
+	LuckWipeButton = DupeMenu.get_node("%LuckWipeButton")
+	SpeedWipeButton = DupeMenu.get_node("%SpeedWipeButton")
 	
 	EndlessEnabledButton.text = EndlessEnabledSetting[endlessenabledId]
 	DupeButton.text = DupeSetting[dupeId]
 	SpeedCapButton.text = SpeedCapSetting[speedcapId]
 	ManagerFrequencyButton.text = ManagerFrequencySetting[managerfrequencyId]
 	EndlessDifficultyButton.text = EndlessDifficultySetting[endlessdifficultyId]
+	JellybeanWipeButton.text = JellybeanWipeSetting[jellybeanwipeId]
+	LuckWipeButton.text = LuckWipeSetting[luckwipeId]
+	SpeedWipeButton.text = SpeedWipeSetting[speedwipeId]
 
 	EndlessEnabledButton.connect("pressed", endlessenabled)
 	DupeButton.connect("pressed", dupe)
 	SpeedCapButton.connect("pressed", speedcap)
 	ManagerFrequencyButton.connect("pressed", managerfrequency)
 	EndlessDifficultyButton.connect("pressed", endlessdifficulty)
+	JellybeanWipeButton.connect("pressed", jellybeanwipe)
+	LuckWipeButton.connect("pressed", luckwipe)
+	SpeedWipeButton.connect("pressed", speedwipe)
 
 func endlessenabled() -> void:
 	endlessenabledId += 1
@@ -126,6 +174,24 @@ func endlessdifficulty() -> void:
 	if endlessdifficultyId >= len(EndlessDifficultySetting):
 		endlessdifficultyId = 0
 	EndlessDifficultyButton.text = EndlessDifficultySetting[endlessdifficultyId]
+	
+func jellybeanwipe() -> void:
+	jellybeanwipeId += 1
+	if jellybeanwipeId >= len(JellybeanWipeSetting):
+		jellybeanwipeId = 0
+	JellybeanWipeButton.text = JellybeanWipeSetting[jellybeanwipeId]
+	
+func luckwipe() -> void:
+	luckwipeId += 1
+	if luckwipeId >= len(LuckWipeSetting):
+		luckwipeId = 0
+	LuckWipeButton.text = LuckWipeSetting[luckwipeId]
+	
+func speedwipe() -> void:
+	speedwipeId += 1
+	if speedwipeId >= len(SpeedWipeSetting):
+		speedwipeId = 0
+	SpeedWipeButton.text = SpeedWipeSetting[speedwipeId]
 
 # TIME TO HIJACK THE BATTLE SPEED! MWAHAHAHAHA!!! -cm37
 func _sync_gameplay_settings() -> void:
@@ -162,6 +228,9 @@ func close(save := false) -> void:
 		"overwritebattlespeed": overwritebattlespeedId,
 		"managerfrequency": managerfrequencyId,
 		"endlessdifficulty": endlessdifficultyId,
+		"jellybeanwipe": jellybeanwipeId,
+		"luckwipe": luckwipeId,
+		"speedwipe": speedwipeId,
 	}
 	ModLoaderConfig.update_config(endlessConfig)
 	ModLoaderConfig.refresh_current_configs()

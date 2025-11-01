@@ -58,5 +58,5 @@ func get_calculated_level_range(_chain: ModLoaderHookChain, _difficulty: int) ->
 	elif EndlessDifficultySetting == 4:
 		LowMultiplier = 1.5
 		HighMultiplier = 2.5
-	var base_range := Vector2i(ceili(((Util.floor_number + 1) * LowMultiplier)), ceili((Util.floor_number + 1) * HighMultiplier))
+	var base_range := Vector2i(ceili(((Util.floor_number + 1) * (LowMultiplier + (floori((Util.floor_number) / 10) / 2)))), ceili(((Util.floor_number + 1) * (HighMultiplier + (floori((Util.floor_number) / 10) / 2)))))
 	return base_range
