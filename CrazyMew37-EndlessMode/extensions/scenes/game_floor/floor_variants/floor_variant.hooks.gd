@@ -41,22 +41,22 @@ func randomize_details(chain: ModLoaderHookChain, roll_anomalies := true) -> voi
 # i did it dad -cm37
 # but in all honestly why the hell does the base endless range do 9/15*x^(1/3)? There's a big jump in level and this formula makes more sense. -cm37
 func get_calculated_level_range(_chain: ModLoaderHookChain, _difficulty: int) -> Vector2i:
-	var LowMultiplier = 2
-	var HighMultiplier = 3
+	var LowMultiplier = 2.0
+	var HighMultiplier = 3.0
 	if EndlessDifficultySetting == 0:
-		LowMultiplier = 2
-		HighMultiplier = 3
+		LowMultiplier = 2.0
+		HighMultiplier = 3.0
 	elif EndlessDifficultySetting == 1:
 		LowMultiplier = 2.5
 		HighMultiplier = 3.5
 	elif EndlessDifficultySetting == 2:
-		LowMultiplier = 3
-		HighMultiplier = 4
+		LowMultiplier = 3.0
+		HighMultiplier = 4.0
 	elif EndlessDifficultySetting == 3:
-		LowMultiplier = 4
-		HighMultiplier = 6
+		LowMultiplier = 4.0
+		HighMultiplier = 6.0
 	elif EndlessDifficultySetting == 4:
 		LowMultiplier = 1.5
 		HighMultiplier = 2.5
-	var base_range := Vector2i(ceili(((Util.floor_number + 1) * (LowMultiplier + (floori((Util.floor_number) / 10) / 2)))), ceili(((Util.floor_number + 1) * (HighMultiplier + (floori((Util.floor_number) / 10) / 2)))))
+	var base_range := Vector2i(ceili(((LowMultiplier) + (floori((Util.floor_number) / 10.0) / 2.0)) * (Util.floor_number + 1.0)), ceili(((HighMultiplier) + (floori((Util.floor_number) / 10.0) / 2.0)) * (Util.floor_number + 1.0)))
 	return base_range
