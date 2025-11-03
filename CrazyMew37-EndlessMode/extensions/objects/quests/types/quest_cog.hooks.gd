@@ -20,13 +20,14 @@ func randomize_objective(chain: ModLoaderHookChain) -> void:
 	else:
 		minimum_level = Util.floor_number * 2
 		maximum_level = Util.floor_number * 3
+	chain.reference_object.department = RNG.channel(RNG.ChannelCogQuestTypes).randi() % (CogDNA.CogDept.keys().size() - 1) as CogDNA.CogDept
 	
 	# 33% chance of department specific
 	if quest_type == 0:
-		chain.reference_object.department = chain.reference_object.goal_dept
+		chain.reference_object.department = CogDNA.CogDept.NULL
 	elif quest_type == 1:
 		var cog_pool : CogPool
-		match chain.reference_object.goal_dept:
+		match chain.reference_object.department:
 			CogDNA.CogDept.SELL:
 				cog_pool = load('res://objects/cog/presets/pools/sellbot.tres')
 			CogDNA.CogDept.CASH:
@@ -40,6 +41,7 @@ func randomize_objective(chain: ModLoaderHookChain) -> void:
 			chain.reference_object.specific_cog = cog_pool.cogs[RNG.channel(RNG.ChannelCogQuestTypes).randi_range(minimum_level, maximum_level)]
 		else:
 			chain.reference_object.specific_cog = cog_pool.cogs[RNG.channel(RNG.ChannelCogQuestTypes).randi_range(0, 7)]
+		chain.reference_object.department = CogDNA.CogDept.NULL
 		
 	
 	# Reduce quotas for more specific quest types
