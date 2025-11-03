@@ -68,7 +68,7 @@ func fill_elevator(chain: ModLoaderHookChain, cog_count: int, dna: CogDNA = null
 		DifficultyMultiplier = 0.75
 	else:
 		DifficultyMultiplier = 1.0
-	var COG_EXTENDED_RANGE = Vector2i(ceili((0.7 * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1.0) / 8.0) / 2.0))) * Util.floor_number) - (5.0 * floori((Util.floor_number + 5.0) / 10.0)), ceili((0.7 * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1.0) / 8.0) / 2.0))) * Util.floor_number))
+	var COG_EXTENDED_RANGE = Vector2i(ceili((0.8 * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1.0) / 8.0) / 2.0))) * Util.floor_number) - (6.0 * floori((Util.floor_number + 5.0) / 10.0)), ceili((0.8 * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1.0) / 8.0) / 2.0))) * Util.floor_number))
 	var roll_for_proxies : bool = SaveFileService.progress_file.proxies_unlocked and chain.reference_object.darkened_sky
 	var new_cogs: Array[Cog]
 	for i in cog_count:

@@ -208,7 +208,7 @@ func final_boss_time_baby() -> void:
 		DifficultyMultiplier = 0.75
 	else:
 		DifficultyMultiplier = 1
-	final_floor.level_range = Vector2i(ceili((0.7 * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1.0) / 8.0) / 2.0))) * Util.floor_number) - (5.0 * floori((Util.floor_number + 5.0) / 10.0)), ceili((0.7 * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1.0) / 8.0) / 2.0))) * Util.floor_number))
+	final_floor.level_range = Vector2i(ceili((0.8 * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1.0) / 8.0) / 2.0))) * Util.floor_number) - (6.0 * floori((Util.floor_number + 5.0) / 10.0)), ceili((0.8 * ((4 * DifficultyMultiplier) + (floori((Util.floor_number - 1.0) / 8.0) / 2.0))) * Util.floor_number))
 	next_floors = [final_floor]
 	$ElevatorUI.floors = next_floors
 	$ElevatorUI.set_floor_index(0)
