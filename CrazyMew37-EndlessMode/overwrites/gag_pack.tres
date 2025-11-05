@@ -38,10 +38,6 @@ func on_collect(_item: Item, _object: Node3D) -> void:
 	else:
 		player.stats.gag_discount += 1
 	
-func on_load(_item: Item) -> void:
-	var player := Util.get_player()
-	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
-		player.stats.gag_discount = 0
 
 func on_item_removed() -> void:
 	var player := Util.get_player()

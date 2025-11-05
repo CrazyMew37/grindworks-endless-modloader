@@ -13,9 +13,6 @@ func on_collect(_item: Item, _object: Node3D) -> void:
 	setup()
 
 func on_load(_item: Item) -> void:
-	var player := Util.get_player()
-	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
-		player.stats.cog_hp_death_threshold = 0.08
 	setup()
 
 func setup() -> void:

@@ -17,9 +17,6 @@ func on_collect(_item: Item, _object: Node3D) -> void:
 	setup()
 
 func on_load(_item: Item) -> void:
-	var player := Util.get_player()
-	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
-		player.stats.proxy_health_mod = -0.25
 	setup()
 
 func setup() -> void:

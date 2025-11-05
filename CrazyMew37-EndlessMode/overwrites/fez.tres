@@ -278,11 +278,6 @@ func on_collect(_item: Item, _object: Node3D) -> void:
 		player.stats.shop_discount = 5
 	else:
 		player.stats.shop_discount += 5
-	
-func on_load(_item: Item) -> void:
-	var player := Util.get_player()
-	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
-		player.stats.shop_discount = 5
 
 func on_item_removed() -> void:
 	var player := Util.get_player()
