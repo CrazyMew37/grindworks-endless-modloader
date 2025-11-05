@@ -1,5 +1,9 @@
 extends ItemScript
 
+var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
+var EnableNerfsSetting = SettingsConfig.data["enablenerfs"]
+var EndlessEnabledSetting = SettingsConfig.data["endlessenabled"]
+
 var multiplier: StatMultiplier
 
 func on_collect(_item: Item, _object: Node3D) -> void:
@@ -22,7 +26,7 @@ func on_item_removed() -> void:
 ## Sync multipliers to current speed amount
 func on_speed_changed(speed: float) -> void:
 	multiplier.amount = maxf(0.0, (speed - 1.0) * 0.5)
-	if multiplier.amount > 0.5:
+	if multiplier.amount > 0.5 && EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
 		multiplier.amount = 0.5
 
 func create_multiplier() -> void:

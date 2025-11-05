@@ -268,19 +268,28 @@ scale = Vector3(0.35, 0.35, 0.35)
 [sub_resource type="GDScript" id="GDScript_wioe1"]
 script/source = "extends ItemScript
 
+var SettingsConfig = ModLoaderConfig.get_config(\"CrazyMew37-EndlessMode\", \"endlesssettings\")
+var EnableNerfsSetting = SettingsConfig.data[\"enablenerfs\"]
+var EndlessEnabledSetting = SettingsConfig.data[\"endlessenabled\"]
+
 func on_collect(_item: Item, _object: Node3D) -> void:
-	setup()
+	var player := Util.get_player()
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.laff_boost_boost = 1
+	else:
+		player.stats.laff_boost_boost += 1
 	
 func on_load(_item: Item) -> void:
-	setup()
-
-func setup() -> void:
 	var player := Util.get_player()
-	player.stats.laff_boost_boost = 1
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.laff_boost_boost = 1
 
 func on_item_removed() -> void:
 	var player := Util.get_player()
-	player.stats.laff_boost_boost = 0
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.laff_boost_boost = 0
+	else:
+		player.stats.laff_boost_boost -= 1
 "
 
 [resource]
@@ -292,7 +301,7 @@ world_scale = 0.15
 ui_cam_offset = 0.1
 item_name = "Heart Headband"
 item_description = "Laff boost boost"
-big_description = "All Laff boosts give +1 more Laff"
+big_description = "All Laff boosts give +1 more Laff (Does not stack with nerfs enabled.)"
 model = ExtResource("4_smxmg")
 item_script = SubResource("GDScript_wioe1")
 icon = ExtResource("3_sdkb1")

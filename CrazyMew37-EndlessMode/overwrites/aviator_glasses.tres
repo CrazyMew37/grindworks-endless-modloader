@@ -234,19 +234,28 @@ scale = Vector3(0.35, 0.35, 0.35)
 [sub_resource type="GDScript" id="GDScript_xw3dk"]
 script/source = "extends ItemScript
 
+var SettingsConfig = ModLoaderConfig.get_config(\"CrazyMew37-EndlessMode\", \"endlesssettings\")
+var EnableNerfsSetting = SettingsConfig.data[\"enablenerfs\"]
+var EndlessEnabledSetting = SettingsConfig.data[\"endlessenabled\"]
+
 func on_collect(_item: Item, _object: Node3D) -> void:
-	setup()
+	var player := Util.get_player()
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.mod_cog_dmg_mult = 1.2
+	else:
+		player.stats.mod_cog_dmg_mult += 0.2
 	
 func on_load(_item: Item) -> void:
-	setup()
-
-func setup() -> void:
 	var player := Util.get_player()
-	player.stats.mod_cog_dmg_mult = 1.2
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.mod_cog_dmg_mult = 1.2
 
 func on_item_removed() -> void:
 	var player := Util.get_player()
-	player.stats.mod_cog_dmg_mult = 1.0
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.mod_cog_dmg_mult -= 0.2
+	else:
+		player.stats.mod_cog_dmg_mult = 1.0
 "
 
 [resource]
@@ -258,7 +267,7 @@ world_scale = 0.15
 ui_cam_offset = 0.2
 item_name = "Aviators"
 item_description = "The bigger they are..."
-big_description = "+ 20% damage against Proxy Cogs."
+big_description = "+ 20% damage against Proxy Cogs. (Does not stack with nerfs enabled.)"
 model = ExtResource("4_0yb83")
 item_script = SubResource("GDScript_xw3dk")
 icon = ExtResource("3_ayta1")

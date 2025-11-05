@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="ItemAccessory" load_steps=10 format=3 uid="uid://c16wp2pqky3nw"]
+
+[ext_resource type="Script" uid="uid://fb0tqfojo57q" path="res://objects/items/classes/accessory_placement.gd" id="1_exhf0"]
+[ext_resource type="Script" uid="uid://duxq3xtgnln43" path="res://objects/items/classes/body_placement.gd" id="2_1x8jw"]
+[ext_resource type="Texture2D" uid="uid://6fm8ne12w47v" path="res://models/accessories/backpacks/bat_wings/tt_m_chr_avt_acc_pac_batWings.glb-pix-1.png" id="3_hmpx4"]
+[ext_resource type="PackedScene" uid="uid://ddauh2tpm4q3t" path="res://models/accessories/backpacks/bat_wings/tt_m_chr_avt_acc_pac_batWings.glb" id="4_5tjr0"]
+[ext_resource type="Script" uid="uid://dvu24b3o8i3sj" path="res://objects/items/classes/item_accessory.gd" id="5_a1liq"]
+
+[sub_resource type="Resource" id="Resource_bcdov"]
+script = ExtResource("2_1x8jw")
+position = Vector3(0.01, 0, 1.35)
+rotation = Vector3(0, 180, 0)
+scale = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="Resource" id="Resource_8f25r"]
+script = ExtResource("2_1x8jw")
+body_type = 1
+position = Vector3(0.01, 0, 1.1)
+rotation = Vector3(0, 180, 0)
+scale = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="Resource" id="Resource_hv6iv"]
+script = ExtResource("2_1x8jw")
+body_type = 2
+position = Vector3(0.01, 0.23, 0.96)
+rotation = Vector3(0, 180, 0)
+scale = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="GDScript" id="GDScript_exhf0"]
+script/source = "extends ItemScript
+
+var SettingsConfig = ModLoaderConfig.get_config(\"CrazyMew37-EndlessMode\", \"endlesssettings\")
+var EnableNerfsSetting = SettingsConfig.data[\"enablenerfs\"]
+var EndlessEnabledSetting = SettingsConfig.data[\"endlessenabled\"]
+
+func on_collect(_item: Item, _object: Node3D) -> void:
+	setup()
+
+func setup() -> void:
+	var player := Util.get_player()
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.throw_heal_boost = min(player.stats.throw_heal_boost + 0.1, 0.25)
+	else:
+		player.stats.throw_heal_boost += 0.1
+
+func on_item_removed() -> void:
+	var player := Util.get_player()
+	player.stats.throw_heal_boost -= 0.1
+"
+
+[resource]
+script = ExtResource("5_a1liq")
+accessory_placements = Array[ExtResource("1_exhf0")]([SubResource("Resource_bcdov"), SubResource("Resource_8f25r"), SubResource("Resource_hv6iv")])
+tags = Array[int]([2])
+qualitoon = 3
+slot = 3
+world_scale = 0.15
+ui_cam_offset = 0.45
+item_name = "Bat Wings"
+item_description = "Siphon your enemies."
+big_description = "Adds an extra 10% to Throw's self heal bonus. (Throw self heal caps at 25% with nerfs enabled.)"
+model = ExtResource("4_5tjr0")
+item_script = SubResource("GDScript_exhf0")
+icon = ExtResource("3_hmpx4")
+shop_category_color = Color(0.196078, 0.580392, 0.917647, 1)

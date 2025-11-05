@@ -1,0 +1,77 @@
+[gd_resource type="Resource" script_class="ItemAccessory" load_steps=10 format=3 uid="uid://bxy12tutquao"]
+
+[ext_resource type="Script" uid="uid://fb0tqfojo57q" path="res://objects/items/classes/accessory_placement.gd" id="1_868yi"]
+[ext_resource type="Script" uid="uid://duxq3xtgnln43" path="res://objects/items/classes/body_placement.gd" id="2_p2nxn"]
+[ext_resource type="Texture2D" uid="uid://chxy7dyn2oe0o" path="res://models/accessories/backpacks/pixie_wings/pixie_wings-pix-1.png" id="3_2uhly"]
+[ext_resource type="PackedScene" uid="uid://devfa8s6hrb8m" path="res://models/accessories/backpacks/pixie_wings/pixie_wings.tscn" id="4_hq2i2"]
+[ext_resource type="Script" uid="uid://dvu24b3o8i3sj" path="res://objects/items/classes/item_accessory.gd" id="5_aueke"]
+
+[sub_resource type="Resource" id="Resource_xqi40"]
+script = ExtResource("2_p2nxn")
+position = Vector3(0, 0.23, 1.14)
+rotation = Vector3(17.6, 180, 0)
+scale = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="Resource" id="Resource_bsqs6"]
+script = ExtResource("2_p2nxn")
+body_type = 1
+position = Vector3(0, 0.3, 0.98)
+rotation = Vector3(24.25, 180, 0)
+scale = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="Resource" id="Resource_n1he7"]
+script = ExtResource("2_p2nxn")
+body_type = 2
+position = Vector3(0, 0.56, 0.9)
+rotation = Vector3(14.29, 180, 0)
+scale = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="GDScript" id="GDScript_868yi"]
+script/source = "extends ItemScript
+
+var SettingsConfig = ModLoaderConfig.get_config(\"CrazyMew37-EndlessMode\", \"endlesssettings\")
+var EnableNerfsSetting = SettingsConfig.data[\"enablenerfs\"]
+var EndlessEnabledSetting = SettingsConfig.data[\"endlessenabled\"]
+
+func on_collect(_item: Item, _object: Node3D) -> void:
+	var player := Util.get_player()
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.healing_effectiveness = 1.2
+	else:
+		player.stats.healing_effectiveness += 0.2
+
+func on_load(_item: Item) -> void:
+	var player := Util.get_player()
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.cog_hp_death_threshold = 1.2
+
+func on_item_removed() -> void:
+	var player := Util.get_player()
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.cog_hp_death_threshold = 1.0
+	else:
+		player.stats.cog_hp_death_threshold -= 0.2
+"
+
+[resource]
+script = ExtResource("5_aueke")
+accessory_placements = Array[ExtResource("1_868yi")]([SubResource("Resource_xqi40"), SubResource("Resource_bsqs6"), SubResource("Resource_n1he7")])
+tags = Array[int]([2])
+qualitoon = 1
+rarity = 4
+slot = 3
+world_scale = 0.11
+ui_cam_offset = 0.4
+item_name = "Pixie Wings"
+item_description = "A gentler touch..."
+big_description = "+ 20% healing effectiveness
+- 5% damage
+(Healing effectiveness does not stack with nerfs enabled.)"
+model = ExtResource("4_hq2i2")
+stats_add = {
+"damage": -0.05,
+"healing_effectiveness": 0.0
+}
+item_script = SubResource("GDScript_868yi")
+icon = ExtResource("3_2uhly")
+shop_category_color = Color(0.196078, 0.580392, 0.917647, 1)

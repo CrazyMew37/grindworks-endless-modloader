@@ -42,7 +42,8 @@ Every 5 jellybeans in your bank gives:
 + 1% Defense
 + 1% Evasiveness
 + 1% Luck
-+ 1% Speed"
++ 1% Speed
+(Caps out at 500 Jellybeans/+100% with nerfs enabled)"
 model = ExtResource("5_o4wg3")
 player_values = {
 "less_shop_items": true

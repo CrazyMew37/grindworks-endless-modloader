@@ -29,15 +29,21 @@ scale = Vector3(0.6, 0.6, 0.6)
 [sub_resource type="GDScript" id="GDScript_tnm5i"]
 script/source = "extends ItemScript
 
+var SettingsConfig = ModLoaderConfig.get_config(\"CrazyMew37-EndlessMode\", \"endlesssettings\")
+var EnableNerfsSetting = SettingsConfig.data[\"enablenerfs\"]
+var EndlessEnabledSetting = SettingsConfig.data[\"endlessenabled\"]
+
 func on_collect(_item: Item, _object: Node3D) -> void:
-	setup()
+	var player := Util.get_player()
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.active_reserve_size = 1
+	else:
+		player.stats.active_reserve_size += 1
 	
 func on_load(_item: Item) -> void:
-	setup()
-
-func setup() -> void:
 	var player := Util.get_player()
-	player.stats.active_reserve_size = 1
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.active_reserve_size = 1
 "
 
 [resource]
@@ -48,7 +54,7 @@ slot = 3
 world_scale = 0.15
 item_name = "Spider Legs"
 item_description = "Some helping hands."
-big_description = "Allows you to hold an additional Pocket Prank."
+big_description = "Allows you to hold an additional Pocket Prank. (Does not stack with nerfs enabled.)"
 model = ExtResource("4_ods4v")
 item_script = SubResource("GDScript_tnm5i")
 icon = ExtResource("3_vfgo4")

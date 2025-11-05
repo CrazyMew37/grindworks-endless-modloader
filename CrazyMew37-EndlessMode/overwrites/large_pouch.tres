@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="ItemAccessory" load_steps=11 format=3 uid="uid://cxinf0f0ewiau"]
+
+[ext_resource type="Script" uid="uid://fb0tqfojo57q" path="res://objects/items/classes/accessory_placement.gd" id="1_2ijj2"]
+[ext_resource type="Script" uid="uid://duxq3xtgnln43" path="res://objects/items/classes/body_placement.gd" id="2_8p62f"]
+[ext_resource type="Texture2D" uid="uid://b1pr5x4odsso3" path="res://models/accessories/backpacks/standard_backpack/small_pouch-pix-2.png" id="3_otefq"]
+[ext_resource type="PackedScene" uid="uid://v36kuhbfnv5b" path="res://models/accessories/backpacks/standard_backpack/large_pouch.tscn" id="4_lblmu"]
+[ext_resource type="AudioStream" uid="uid://8vjo40mj15u4" path="res://audio/sfx/items/SZ_MM_fanfare.ogg" id="5_rcbfu"]
+[ext_resource type="Script" uid="uid://dvu24b3o8i3sj" path="res://objects/items/classes/item_accessory.gd" id="6_me4mi"]
+
+[sub_resource type="Resource" id="Resource_6vjhu"]
+script = ExtResource("2_8p62f")
+body_type = 2
+position = Vector3(0.01, 0.72, 0.8)
+rotation = Vector3(-8.28, 180, 0)
+scale = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="Resource" id="Resource_4scxt"]
+script = ExtResource("2_8p62f")
+body_type = 1
+position = Vector3(0.01, 0.35, 0.78)
+rotation = Vector3(0, 180, 0)
+scale = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="Resource" id="Resource_pj1q4"]
+script = ExtResource("2_8p62f")
+position = Vector3(0.11, 0.46, 1.08)
+rotation = Vector3(8.28, 180, 0)
+scale = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="GDScript" id="GDScript_2ijj2"]
+script/source = "extends ItemScript
+
+var SettingsConfig = ModLoaderConfig.get_config(\"CrazyMew37-EndlessMode\", \"endlesssettings\")
+var EnableNerfsSetting = SettingsConfig.data[\"enablenerfs\"]
+var EndlessEnabledSetting = SettingsConfig.data[\"endlessenabled\"]
+
+func on_collect(_item: Item, _object: Node3D) -> void:
+	setup()
+
+func setup() -> void:
+	var player := Util.get_player()
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.gag_cap = min(player.stats.gag_cap + 5, 20)
+	else:
+		player.stats.gag_cap += 5
+
+func on_item_removed() -> void:
+	var player := Util.get_player()
+	player.stats.gag_cap = max(player.stats.gag_cap - 5, 10)
+"
+
+[resource]
+script = ExtResource("6_me4mi")
+accessory_placements = Array[ExtResource("1_2ijj2")]([SubResource("Resource_6vjhu"), SubResource("Resource_4scxt"), SubResource("Resource_pj1q4")])
+tags = Array[int]([0])
+qualitoon = 4
+rarity = 3
+slot = 3
+world_scale = 0.15
+item_name = "Large Pouch"
+item_description = "The morest storage space!"
+big_description = "Adds +5 to your Gag carry capacity. (Gag carry capacity caps out at 20 with nerfs enabled.)"
+model = ExtResource("4_lblmu")
+pickup_sfx = ExtResource("5_rcbfu")
+item_script = SubResource("GDScript_2ijj2")
+icon = ExtResource("3_otefq")
+shop_category_color = Color(0.196078, 0.580392, 0.917647, 1)

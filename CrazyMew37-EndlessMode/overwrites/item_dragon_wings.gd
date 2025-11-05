@@ -1,5 +1,9 @@
 extends ItemScript
 
+var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings")
+var EnableNerfsSetting = SettingsConfig.data["enablenerfs"]
+var EndlessEnabledSetting = SettingsConfig.data["endlessenabled"]
+
 const BOOST_STATS :={
 	'luck': 0.01,
 	'evasiveness': 0.01,
@@ -33,7 +37,7 @@ func on_money_changed(money: int) -> void:
 	for mult: StatMultiplier in multipliers:
 		if mult.stat in BOOST_STATS.keys():
 			mult.amount = floori(money / 5) * BOOST_STATS[mult.stat]
-			if mult.amount > 1.0:
+			if mult.amount > 1.0 && EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
 				mult.amount = 1.0
 
 func create_multipliers() -> void:

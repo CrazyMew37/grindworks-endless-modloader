@@ -79,4 +79,5 @@ func _ready() -> void:
 			"jellybeanwipe": 0,
 			"luckwipe": 0,
 			"speedwipe": 0,
+			"enablenerfs": 0,
 		})

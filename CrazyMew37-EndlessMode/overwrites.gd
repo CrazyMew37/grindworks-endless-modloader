@@ -2,6 +2,7 @@ extends Node
 
 # -crab dance- DRAGON WINGS ARE DEAD -cm37
 func _init():
+	# Accessory Overwrites
 	var overwrite_fez = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/fez.tres")
 	overwrite_fez.take_over_path("res://objects/items/resources/accessories/hats/fez.tres")
 	var overwrite_fishing = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/fishing_hat.tres")
@@ -30,3 +31,35 @@ func _init():
 	overwrite_gagpack.take_over_path("res://objects/items/resources/accessories/backpacks/gag_pack.tres")
 	var overwrite_spiderlegs = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/spider_legs.tres")
 	overwrite_spiderlegs.take_over_path("res://objects/items/resources/accessories/backpacks/spider_legs.tres")
+	var overwrite_smallpouch = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/small_pouch.tres")
+	overwrite_smallpouch.take_over_path("res://objects/items/resources/accessories/backpacks/small_pouch.tres")
+	var overwrite_medpouch = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/medium_pouch.tres")
+	overwrite_medpouch.take_over_path("res://objects/items/resources/accessories/backpacks/medium_pouch.tres")
+	var overwrite_largepouch = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/large_pouch.tres")
+	overwrite_largepouch.take_over_path("res://objects/items/resources/accessories/backpacks/large_pouch.tres")
+	var overwrite_superboots = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/super_toon_boots.tres")
+	overwrite_superboots.take_over_path("res://objects/items/resources/accessories/shoes/super_toon_boots.tres")
+	var overwrite_rolodex = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/rolodex.tres")
+	overwrite_rolodex.take_over_path("res://objects/items/resources/passive/rolodex.tres")
+	var overwrite_batwings = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/bat_wings.tres")
+	overwrite_batwings.take_over_path("res://objects/items/resources/accessories/backpacks/bat_wings.tres")
+	var overwrite_scubamask = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/scuba_mask.tres")
+	overwrite_scubamask.take_over_path("res://objects/items/resources/accessories/glasses/scuba_mask.tres")
+	var overwrite_scubatank = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/scuba_tank.tres")
+	overwrite_scubatank.take_over_path("res://objects/items/resources/accessories/backpacks/scuba_tank.tres")
+	var overwrite_pixie = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/pixie_wings.tres")
+	overwrite_pixie.take_over_path("res://objects/items/resources/accessories/backpacks/pixie_wings.tres")
+	
+	# Anomaly Overwrites
+	var overwrite_faulty = load("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/anomalies/floor_mod_level_down.gd")
+	overwrite_faulty.take_over_path("res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_level_down.gd")
+	var overwrite_tightened = load("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/anomalies/floor_mod_level_up.gd")
+	overwrite_tightened.take_over_path("res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_level_up.gd")
+	var overwrite_inspiration = load("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/anomalies/floor_mod_inspiration.gd")
+	overwrite_inspiration.take_over_path("res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_inspiration.gd")
+	var overwrite_orggags = load("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/anomalies/floor_mod_organic_gags.gd")
+	overwrite_orggags.take_over_path("res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_organic_gags.gd")
+	var overwrite_sillywaves = load("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/anomalies/floor_mod_silly_waves.gd")
+	overwrite_sillywaves.take_over_path("res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_silly_waves.gd")
+	var overwrite_dramaturgy = load("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/anomalies/floor_mod_stagnant_air.gd")
+	overwrite_dramaturgy.take_over_path("res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_stagnant_air.gd")

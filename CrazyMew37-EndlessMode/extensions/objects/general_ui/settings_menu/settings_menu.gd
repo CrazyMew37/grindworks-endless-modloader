@@ -9,6 +9,7 @@ var EndlessDifficultyButton : GeneralButton
 var JellybeanWipeButton : GeneralButton
 var LuckWipeButton : GeneralButton
 var SpeedWipeButton : GeneralButton
+var EnableNerfsButton : GeneralButton
 
 var Pla : Player
 
@@ -21,6 +22,7 @@ var endlessdifficultyId : int
 var jellybeanwipeId : int
 var luckwipeId : int
 var speedwipeId : int
+var enablenerfsId : int
 
 const EndlessEnabledSetting : Dictionary = {
 	0 : "On",
@@ -99,6 +101,11 @@ const SpeedWipeSetting : Dictionary = {
 	6 : "Every 100 Floors",
 }
 
+const EnableNerfsSetting : Dictionary = {
+	0 : "On",
+	1 : "Off",
+}
+
 func _ready() -> void:
 	super()
 	var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings").data
@@ -111,6 +118,7 @@ func _ready() -> void:
 	jellybeanwipeId = SettingsConfig["jellybeanwipe"]
 	luckwipeId = SettingsConfig["luckwipe"]
 	speedwipeId = SettingsConfig["speedwipe"]
+	enablenerfsId = SettingsConfig["enablenerfs"]
 
 	var DupeMenuResource = load("res://mods-unpacked/CrazyMew37-EndlessMode/dupe_settings.tscn")
 	var DupeMenu = DupeMenuResource.instantiate()
@@ -126,6 +134,7 @@ func _ready() -> void:
 	JellybeanWipeButton = DupeMenu.get_node("%JellybeanWipeButton")
 	LuckWipeButton = DupeMenu.get_node("%LuckWipeButton")
 	SpeedWipeButton = DupeMenu.get_node("%SpeedWipeButton")
+	EnableNerfsButton = DupeMenu.get_node("%EnableNerfsButton")
 	
 	EndlessEnabledButton.text = EndlessEnabledSetting[endlessenabledId]
 	DupeButton.text = DupeSetting[dupeId]
@@ -135,6 +144,7 @@ func _ready() -> void:
 	JellybeanWipeButton.text = JellybeanWipeSetting[jellybeanwipeId]
 	LuckWipeButton.text = LuckWipeSetting[luckwipeId]
 	SpeedWipeButton.text = SpeedWipeSetting[speedwipeId]
+	EnableNerfsButton.text = EnableNerfsSetting[enablenerfsId]
 
 	EndlessEnabledButton.connect("pressed", endlessenabled)
 	DupeButton.connect("pressed", dupe)
@@ -144,6 +154,7 @@ func _ready() -> void:
 	JellybeanWipeButton.connect("pressed", jellybeanwipe)
 	LuckWipeButton.connect("pressed", luckwipe)
 	SpeedWipeButton.connect("pressed", speedwipe)
+	EnableNerfsButton.connect("pressed", enablenerfs)
 
 func endlessenabled() -> void:
 	endlessenabledId += 1
@@ -193,6 +204,12 @@ func speedwipe() -> void:
 		speedwipeId = 0
 	SpeedWipeButton.text = SpeedWipeSetting[speedwipeId]
 
+func enablenerfs() -> void:
+	enablenerfsId += 1
+	if enablenerfsId >= len(EnableNerfsSetting):
+		enablenerfsId = 0
+	EnableNerfsButton.text = EnableNerfsSetting[enablenerfsId]
+
 # TIME TO HIJACK THE BATTLE SPEED! MWAHAHAHAHA!!! -cm37
 func _sync_gameplay_settings() -> void:
 	var SettingsConfig = ModLoaderConfig.get_config("CrazyMew37-EndlessMode", "endlesssettings").data
@@ -231,6 +248,7 @@ func close(save := false) -> void:
 		"jellybeanwipe": jellybeanwipeId,
 		"luckwipe": luckwipeId,
 		"speedwipe": speedwipeId,
+		"enablenerfs": enablenerfsId,
 	}
 	ModLoaderConfig.update_config(endlessConfig)
 	ModLoaderConfig.refresh_current_configs()

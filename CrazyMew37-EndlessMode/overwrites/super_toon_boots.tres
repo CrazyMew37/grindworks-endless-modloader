@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemShoe" load_steps=7 format=3 uid="uid://cwu7qbjyly5jx"]
+
+[ext_resource type="Texture2D" uid="uid://d0dm7f23ufvl2" path="res://objects/items/resources/accessories/shoes/icons/super_toon_boots.png" id="1_qmwq2"]
+[ext_resource type="Script" uid="uid://rqs6fvpt7h76" path="res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/item_super_toon_boots.gd" id="2_qmwq2"]
+[ext_resource type="Texture2D" uid="uid://bs0vvkhhcpods" path="res://models/accessories/shoe_textures/boots/tt_t_chr_avt_acc_sho_superToonRedBootsLL.png" id="3_0qjta"]
+[ext_resource type="AudioStream" uid="uid://8vjo40mj15u4" path="res://audio/sfx/items/SZ_MM_fanfare.ogg" id="4_bmh4j"]
+[ext_resource type="Script" uid="uid://bb02y647us2n3" path="res://objects/items/classes/item_shoe.gd" id="5_hd0wc"]
+[ext_resource type="Texture2D" uid="uid://ov3av214en56" path="res://models/accessories/shoe_textures/boots/tt_t_chr_avt_acc_sho_superToonRedBoots.png" id="6_rjmih"]
+
+[resource]
+script = ExtResource("5_hd0wc")
+shoe_type = 3
+shoe_tex = ExtResource("6_rjmih")
+long_leg_tex = ExtResource("3_0qjta")
+qualitoon = 4
+rarity = 7
+world_y_offset = -0.2
+item_name = "Super Toon Boots"
+item_description = "Hit the ground running."
+big_description = "+1 move on the first round of every battle. (Does not stack with nerfs enabled.)"
+pickup_sfx = ExtResource("4_bmh4j")
+item_script = ExtResource("2_qmwq2")
+icon = ExtResource("1_qmwq2")
+metadata/_custom_type_script = "uid://bb02y647us2n3"

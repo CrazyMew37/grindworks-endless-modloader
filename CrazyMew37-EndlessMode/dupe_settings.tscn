@@ -67,15 +67,15 @@ font_size = 18.0
 text = "On"
 label_settings = SubResource("LabelSettings_xxrhd")
 
-[node name="DupeSetting" type="HBoxContainer" parent="VideoSettings"]
+[node name="EndlessDifficultySetting" type="HBoxContainer" parent="VideoSettings"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VideoSettings/DupeSetting"]
+[node name="Label" type="Label" parent="VideoSettings/EndlessDifficultySetting"]
 layout_mode = 2
-text = "Duplicate Items:"
+text = "Difficulty:"
 label_settings = SubResource("LabelSettings_n41hl")
 
-[node name="DupeButton" parent="VideoSettings/DupeSetting" instance=ExtResource("6_r7b1s")]
+[node name="EndlessDifficultyButton" parent="VideoSettings/EndlessDifficultySetting" instance=ExtResource("6_r7b1s")]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_vnbpc")
 custom_minimum_size = Vector2(160, 60)
@@ -86,37 +86,11 @@ texture_normal = ExtResource("8_qbjn4")
 texture_pressed = ExtResource("9_0mru3")
 texture_hover = ExtResource("10_odtg5")
 texture_disabled = ExtResource("9_0mru3")
-text = "Every 5 Floors"
+text = "Normal (2/3x)"
 font_size = 18.0
 
-[node name="Label" parent="VideoSettings/DupeSetting/DupeButton" index="0"]
-text = "Every 5 Floors"
-label_settings = SubResource("LabelSettings_xxrhd")
-
-[node name="SpeedCapSetting" type="HBoxContainer" parent="VideoSettings"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VideoSettings/SpeedCapSetting"]
-layout_mode = 2
-text = "Speed Cap:"
-label_settings = SubResource("LabelSettings_n41hl")
-
-[node name="SpeedCapButton" parent="VideoSettings/SpeedCapSetting" instance=ExtResource("6_r7b1s")]
-unique_name_in_owner = true
-material = SubResource("ShaderMaterial_vnbpc")
-custom_minimum_size = Vector2(160, 60)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture_normal = ExtResource("8_qbjn4")
-texture_pressed = ExtResource("9_0mru3")
-texture_hover = ExtResource("10_odtg5")
-texture_disabled = ExtResource("9_0mru3")
-text = "200%"
-font_size = 18.0
-
-[node name="Label" parent="VideoSettings/SpeedCapSetting/SpeedCapButton" index="0"]
-text = "200%"
+[node name="Label" parent="VideoSettings/EndlessDifficultySetting/EndlessDifficultyButton" index="0"]
+text = "Normal (2/3x)"
 label_settings = SubResource("LabelSettings_xxrhd")
 
 [node name="ManagerFrequencySetting" type="HBoxContainer" parent="VideoSettings"]
@@ -146,15 +120,15 @@ font_size = 18.0
 text = "Every 5 Floors"
 label_settings = SubResource("LabelSettings_xxrhd")
 
-[node name="EndlessDifficultySetting" type="HBoxContainer" parent="VideoSettings"]
+[node name="DupeSetting" type="HBoxContainer" parent="VideoSettings"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VideoSettings/EndlessDifficultySetting"]
+[node name="Label" type="Label" parent="VideoSettings/DupeSetting"]
 layout_mode = 2
-text = "Difficulty:"
+text = "Duplicate Items:"
 label_settings = SubResource("LabelSettings_n41hl")
 
-[node name="EndlessDifficultyButton" parent="VideoSettings/EndlessDifficultySetting" instance=ExtResource("6_r7b1s")]
+[node name="DupeButton" parent="VideoSettings/DupeSetting" instance=ExtResource("6_r7b1s")]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_vnbpc")
 custom_minimum_size = Vector2(160, 60)
@@ -165,22 +139,74 @@ texture_normal = ExtResource("8_qbjn4")
 texture_pressed = ExtResource("9_0mru3")
 texture_hover = ExtResource("10_odtg5")
 texture_disabled = ExtResource("9_0mru3")
-text = "Normal (2/3x)"
+text = "Every 5 Floors"
 font_size = 18.0
 
-[node name="Label" parent="VideoSettings/EndlessDifficultySetting/EndlessDifficultyButton" index="0"]
-text = "Normal (2/3x)"
+[node name="Label" parent="VideoSettings/DupeSetting/DupeButton" index="0"]
+text = "Every 5 Floors"
 label_settings = SubResource("LabelSettings_xxrhd")
 
-[node name="JellybeanWipeSetting" type="HBoxContainer" parent="VideoSettings"]
+[node name="EnableNerfsSetting" type="HBoxContainer" parent="VideoSettings"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VideoSettings/JellybeanWipeSetting"]
+[node name="Label" type="Label" parent="VideoSettings/EnableNerfsSetting"]
 layout_mode = 2
-text = "Wipe Jellybeans:"
+text = "OP Item Nerfs:"
 label_settings = SubResource("LabelSettings_n41hl")
 
-[node name="JellybeanWipeButton" parent="VideoSettings/JellybeanWipeSetting" instance=ExtResource("6_r7b1s")]
+[node name="EnableNerfsButton" parent="VideoSettings/EnableNerfsSetting" instance=ExtResource("6_r7b1s")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_vnbpc")
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture_normal = ExtResource("8_qbjn4")
+texture_pressed = ExtResource("9_0mru3")
+texture_hover = ExtResource("10_odtg5")
+texture_disabled = ExtResource("9_0mru3")
+text = "On"
+font_size = 18.0
+
+[node name="Label" parent="VideoSettings/EnableNerfsSetting/EnableNerfsButton" index="0"]
+text = "On"
+label_settings = SubResource("LabelSettings_xxrhd")
+
+[node name="SpeedCapSetting" type="HBoxContainer" parent="VideoSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VideoSettings/SpeedCapSetting"]
+layout_mode = 2
+text = "Speed Cap:"
+label_settings = SubResource("LabelSettings_n41hl")
+
+[node name="SpeedCapButton" parent="VideoSettings/SpeedCapSetting" instance=ExtResource("6_r7b1s")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_vnbpc")
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture_normal = ExtResource("8_qbjn4")
+texture_pressed = ExtResource("9_0mru3")
+texture_hover = ExtResource("10_odtg5")
+texture_disabled = ExtResource("9_0mru3")
+text = "200%"
+font_size = 18.0
+
+[node name="Label" parent="VideoSettings/SpeedCapSetting/SpeedCapButton" index="0"]
+text = "200%"
+label_settings = SubResource("LabelSettings_xxrhd")
+
+[node name="SpeedWipeSetting" type="HBoxContainer" parent="VideoSettings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VideoSettings/SpeedWipeSetting"]
+layout_mode = 2
+text = "Set Speed to 100%:"
+label_settings = SubResource("LabelSettings_n41hl")
+
+[node name="SpeedWipeButton" parent="VideoSettings/SpeedWipeSetting" instance=ExtResource("6_r7b1s")]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_vnbpc")
 custom_minimum_size = Vector2(160, 60)
@@ -194,7 +220,7 @@ texture_disabled = ExtResource("9_0mru3")
 text = "Off"
 font_size = 18.0
 
-[node name="Label" parent="VideoSettings/JellybeanWipeSetting/JellybeanWipeButton" index="0"]
+[node name="Label" parent="VideoSettings/SpeedWipeSetting/SpeedWipeButton" index="0"]
 text = "Off"
 label_settings = SubResource("LabelSettings_xxrhd")
 
@@ -224,15 +250,15 @@ font_size = 18.0
 text = "Off"
 label_settings = SubResource("LabelSettings_xxrhd")
 
-[node name="SpeedWipeSetting" type="HBoxContainer" parent="VideoSettings"]
+[node name="JellybeanWipeSetting" type="HBoxContainer" parent="VideoSettings"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VideoSettings/SpeedWipeSetting"]
+[node name="Label" type="Label" parent="VideoSettings/JellybeanWipeSetting"]
 layout_mode = 2
-text = "Set Speed to 100%:"
+text = "Wipe Jellybeans:"
 label_settings = SubResource("LabelSettings_n41hl")
 
-[node name="SpeedWipeButton" parent="VideoSettings/SpeedWipeSetting" instance=ExtResource("6_r7b1s")]
+[node name="JellybeanWipeButton" parent="VideoSettings/JellybeanWipeSetting" instance=ExtResource("6_r7b1s")]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_vnbpc")
 custom_minimum_size = Vector2(160, 60)
@@ -246,15 +272,16 @@ texture_disabled = ExtResource("9_0mru3")
 text = "Off"
 font_size = 18.0
 
-[node name="Label" parent="VideoSettings/SpeedWipeSetting/SpeedWipeButton" index="0"]
+[node name="Label" parent="VideoSettings/JellybeanWipeSetting/JellybeanWipeButton" index="0"]
 text = "Off"
 label_settings = SubResource("LabelSettings_xxrhd")
 
 [editable path="VideoSettings/EndlessEnabledSetting/EndlessEnabledButton"]
-[editable path="VideoSettings/DupeSetting/DupeButton"]
-[editable path="VideoSettings/SpeedCapSetting/SpeedCapButton"]
-[editable path="VideoSettings/ManagerFrequencySetting/ManagerFrequencyButton"]
 [editable path="VideoSettings/EndlessDifficultySetting/EndlessDifficultyButton"]
-[editable path="VideoSettings/JellybeanWipeSetting/JellybeanWipeButton"]
-[editable path="VideoSettings/LuckWipeSetting/LuckWipeButton"]
+[editable path="VideoSettings/ManagerFrequencySetting/ManagerFrequencyButton"]
+[editable path="VideoSettings/DupeSetting/DupeButton"]
+[editable path="VideoSettings/EnableNerfsSetting/EnableNerfsButton"]
+[editable path="VideoSettings/SpeedCapSetting/SpeedCapButton"]
 [editable path="VideoSettings/SpeedWipeSetting/SpeedWipeButton"]
+[editable path="VideoSettings/LuckWipeSetting/LuckWipeButton"]
+[editable path="VideoSettings/JellybeanWipeSetting/JellybeanWipeButton"]
