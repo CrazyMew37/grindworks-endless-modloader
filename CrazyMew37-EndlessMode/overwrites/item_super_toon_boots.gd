@@ -16,7 +16,7 @@ func setup() -> void:
 func on_battle_started(manager: BattleManager) -> void:
 	await get_tree().process_frame
 	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
-		manager.battle_stats[Util.get_player()].turns = 4
+		manager.battle_stats[Util.get_player()].turns = Util.get_player().stats.turns + 1
 	else:
 		manager.battle_stats[Util.get_player()].turns += 1
 	manager.s_round_started.connect(reset_moves.bind(manager), CONNECT_ONE_SHOT)
@@ -24,7 +24,7 @@ func on_battle_started(manager: BattleManager) -> void:
 
 func reset_moves(_actions, manager: BattleManager) -> void:
 	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
-		manager.battle_stats[Util.get_player()].turns = 3
+		manager.battle_stats[Util.get_player()].turns = Util.get_player().stats.turns
 	else:
 		manager.battle_stats[Util.get_player()].turns -= 1
 	manager.battle_ui.refresh_turns()
