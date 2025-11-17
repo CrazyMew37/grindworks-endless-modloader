@@ -35,7 +35,6 @@ func install_script_extensions() -> void:
 	# ! any script extensions should go in this directory, and should follow the same directory structure as vanilla
 	extensions_dir_path = mod_dir_path.path_join("extensions")
 	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("objects/globals/globals.gd"))
-	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("scenes/elevator_scene/elevator_scene.gd"))
 	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("objects/general_ui/settings_menu/settings_menu.gd"))
 	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("objects/modules/cgc/variants/armchair_manager_logic.gd"))
 
@@ -60,6 +59,7 @@ func install_script_hook_files() -> void:
 	ModLoaderMod.install_script_hooks("res://objects/battle/battle_manager/battle_manager.gd", extensions_dir_path.path_join("objects/battle/battle_manager/battle_manager.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://objects/quests/types/quest_cog.gd", extensions_dir_path.path_join("objects/quests/types/quest_cog.hooks.gd"))
 	ModLoaderMod.install_script_hooks("res://scenes/stranger_shop/stranger_shop.gd", extensions_dir_path.path_join("scenes/stranger_shop/stranger_shop.hooks.gd"))
+	ModLoaderMod.install_script_hooks("res://scenes/elevator_scene/elevator_scene.gd", extensions_dir_path.path_join("scenes/elevator_scene/elevator_scene.hooks.gd"))
 
 func add_translations() -> void:
 	# ! Place all of your translation files into this directory
