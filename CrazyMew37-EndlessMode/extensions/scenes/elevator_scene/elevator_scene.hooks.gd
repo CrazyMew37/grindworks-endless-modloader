@@ -18,6 +18,7 @@ var next_floors: Array[FloorVariant] = []
 
 
 func _ready(chain: ModLoaderHookChain) -> void:
+	next_floors.clear()
 	var ElevatorGUI = chain.reference_object.get_node("ElevatorUI")
 	if EndlessEnabledSetting == 1 && Util.floor_number > 4:
 		ElevatorGUI.arrow_left.hide()
