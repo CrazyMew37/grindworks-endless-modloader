@@ -1,6 +1,6 @@
 extends Object
 
-# These books are cooked alright. Burnt at this point. Hope this doesn't make bk too strong. -cm37
+# These books are cooked alright. Turned to ashes. -cm37
 func apply_cooked(chain: ModLoaderHookChain) -> void:
 	if chain.reference_object.COOKED.id in chain.reference_object.manager.get_status_ids_for_target(chain.reference_object.targets[0]):
 		# If they already have the cooked effect, simply increase its damage value.
