@@ -43,9 +43,9 @@ func on_collect(_item: Item, _object: Node3D) -> void:
 func on_item_removed() -> void:
 	var player := Util.get_player()
 	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
-		player.stats.cog_hp_death_threshold = 1.0
+		player.stats.healing_effectiveness = 1.0
 	else:
-		player.stats.cog_hp_death_threshold -= 0.2
+		player.stats.healing_effectiveness -= 0.2
 "
 
 [resource]
