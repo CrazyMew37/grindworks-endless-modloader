@@ -17,7 +17,10 @@ func roll_for_level(chain: ModLoaderHookChain) -> void:
 		else:
 			chain.reference_object.level = chain.reference_object.custom_level_range.y + chain.reference_object.level_range_offset
 	elif sign( chain.reference_object.level_range_offset) == -1:
-		chain.reference_object.level = (chain.reference_object.custom_level_range.y - chain.reference_object.level_range_offset) + 1
+		if Util.floor_number > 5:
+			chain.reference_object.level = (chain.reference_object.custom_level_range.y + (chain.reference_object.level_range_offset * ceili(Util.floor_number * 0.2))) + (1 * ceili(Util.floor_number * 0.2))
+		else:
+			chain.reference_object.level = (chain.reference_object.custom_level_range.y + chain.reference_object.level_range_offset) + 1
 
 # My first mod seperate from another's. Unsurprsingly, it nearly drove me mad at first. -cm37
 ## Scales the Cog's chain.reference_object.stats based on level

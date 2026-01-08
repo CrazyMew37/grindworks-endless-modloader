@@ -34,7 +34,6 @@ func _init() -> void:
 func install_script_extensions() -> void:
 	# ! any script extensions should go in this directory, and should follow the same directory structure as vanilla
 	extensions_dir_path = mod_dir_path.path_join("extensions")
-	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("objects/globals/globals.gd"))
 	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("objects/general_ui/settings_menu/settings_menu.gd"))
 	ModLoaderMod.install_script_extension(extensions_dir_path.path_join("objects/modules/cgc/variants/armchair_manager_logic.gd"))
 
