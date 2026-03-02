@@ -133,6 +133,10 @@ func _ready(chain: ModLoaderHookChain) -> void:
 		if Util.floor_number % 100 == 1 && Util.floor_number > 4:
 			chain.reference_object.player.stats.speed = 1.0
 		
+	# Score Stuff
+	if Util.floor_number > 4 && EndlessEnabledSetting == 0:
+		ScoreTally.modify_score(ScoreTally.ChannelTimeBonus, 720)
+		
 	# Save progress at every elevator scene
 	await Task.delay(0.1)
 	SaveFileService.save()
