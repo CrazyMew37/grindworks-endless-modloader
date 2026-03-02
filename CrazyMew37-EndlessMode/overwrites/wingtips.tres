@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="ItemShoe" format=3 uid="uid://c2jcwxn6fp5xy"]
+
+[ext_resource type="Texture2D" uid="uid://b6q6beasso23f" path="res://objects/items/resources/accessories/shoes/icons/wingtips.png" id="1_55xws"]
+[ext_resource type="Script" uid="uid://bb02y647us2n3" path="res://objects/items/classes/item_shoe.gd" id="2_sj7k2"]
+[ext_resource type="Texture2D" uid="uid://nhrj15nwec8x" path="res://models/accessories/shoe_textures/shoes/tt_t_chr_avt_acc_sho_wingtips.png" id="3_us3uc"]
+
+[sub_resource type="GDScript" id="GDScript_55xws"]
+script/source = "extends ItemScript
+
+var SettingsConfig = ModLoaderConfig.get_config(\"CrazyMew37-EndlessMode\", \"endlesssettings\")
+var EnableNerfsSetting = SettingsConfig.data[\"enablenerfs\"]
+var EndlessEnabledSetting = SettingsConfig.data[\"endlessenabled\"]
+
+func on_collect(_item: Item, _object: Node3D) -> void:
+	var player := Util.get_player()
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.agility = 1.1
+	else:
+		player.stats.agility += 0.1
+	
+
+func on_item_removed() -> void:
+	var player := Util.get_player()
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.agility = 1.0
+	else:
+		player.stats.agility -= 0.1
+"
+
+[resource]
+script = ExtResource("2_sj7k2")
+shoe_tex = ExtResource("3_us3uc")
+qualitoon = 2
+item_name = "Wingtips"
+item_description = "Up and at 'em!"
+big_description = "+10% Jump height
++10% Speed
+(Jump height does not stack with nerfs enabled.)"
+stats_add = {
+"speed": 0.1
+}
+item_script = SubResource("GDScript_55xws")
+icon = ExtResource("1_55xws")
+unlock_achievement = 38
+metadata/_custom_type_script = "uid://bb02y647us2n3"

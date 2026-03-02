@@ -49,6 +49,12 @@ func _init():
 	overwrite_scubatank.take_over_path("res://objects/items/resources/accessories/backpacks/scuba_tank.tres")
 	var overwrite_pixie = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/pixie_wings.tres")
 	overwrite_pixie.take_over_path("res://objects/items/resources/accessories/backpacks/pixie_wings.tres")
+	var overwrite_birdwings = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/bird_wings.tres")
+	overwrite_birdwings.take_over_path("res://objects/items/resources/accessories/backpacks/bird_wings.tres")
+	var overwrite_rainbowbean = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/rainbow_jellybean.tres")
+	overwrite_rainbowbean.take_over_path("res://objects/items/custom/rainbow_jellybean/rainbow_jellybean.tres")
+	var overwrite_wingtips = preload("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/wingtips.tres")
+	overwrite_wingtips.take_over_path("res://objects/items/resources/accessories/shoes/wingtips.tres")
 	
 	# Anomaly Overwrites
 	var overwrite_faulty = load("res://mods-unpacked/CrazyMew37-EndlessMode/overwrites/anomalies/floor_mod_level_down.gd")

@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bd07kfggebab"]
+
+[ext_resource type="Texture2D" uid="uid://c5lf8nnqyw8h3" path="res://objects/items/custom/rainbow_jellybean/rainbow_jellybean-pix-1.png" id="1_nsb2q"]
+[ext_resource type="Material" uid="uid://beyj4wws86ddy" path="res://objects/items/custom/rainbow_jellybean/rainbow_bean_mat.tres" id="2_uty16"]
+[ext_resource type="PackedScene" uid="uid://bfuome7pib11g" path="res://objects/items/custom/rainbow_jellybean/rainbow_jellybean.tscn" id="3_1kut4"]
+[ext_resource type="Script" uid="uid://combwqypom1ru" path="res://objects/items/classes/item.gd" id="4_pvkc6"]
+
+[sub_resource type="GDScript" id="GDScript_nsb2q"]
+script/source = "extends ItemScript
+
+var SettingsConfig = ModLoaderConfig.get_config(\"CrazyMew37-EndlessMode\", \"endlesssettings\")
+var EnableNerfsSetting = SettingsConfig.data[\"enablenerfs\"]
+var EndlessEnabledSetting = SettingsConfig.data[\"endlessenabled\"]
+
+func on_collect(_item: Item, _object: Node3D) -> void:
+	var player := Util.get_player()
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.money_mult = 2.0
+	else:
+		player.stats.money_mult *= 2.0
+	
+
+func on_item_removed() -> void:
+	var player := Util.get_player()
+	if EnableNerfsSetting == 0 && EndlessEnabledSetting == 0:
+		player.stats.money_mult = 1.0
+	else:
+		player.stats.money_mult /= 2.0
+"
+
+[resource]
+script = ExtResource("4_pvkc6")
+qualitoon = 4
+rarity = 6
+world_scale = 4.0
+item_name = "Rainbow Jellybean"
+item_description = "Double jellybeans!"
+big_description = "Doubles all jellybean profits.
+(Does not stack with nerfs enabled.)"
+model = ExtResource("3_1kut4")
+item_script = SubResource("GDScript_nsb2q")
+icon = ExtResource("1_nsb2q")
+icon_material = ExtResource("2_uty16")
+shop_category_title = "Special Item"
+shop_category_color = Color(0.60162, 0.201089, 1, 1)
+force_show_shop_category = true
+unlock_achievement = 39
+metadata/_custom_type_script = "uid://combwqypom1ru"

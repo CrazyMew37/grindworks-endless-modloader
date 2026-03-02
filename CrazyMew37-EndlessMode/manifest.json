@@ -7,9 +7,9 @@
 				"CrazyMew37"
 			],
 			"compatible_game_version": [
-				"1.2.2",
-				"1.2.3",
-				"1.2.4"
+				"1.2.6",
+				"1.2.7",
+				"1.2.8"
 			],
 			"compatible_mod_loader_version": [
 				"7.0.0"
@@ -64,6 +64,6 @@
 	},
 	"name": "EndlessMode",
 	"namespace": "CrazyMew37",
-	"version_number": "4.1.7",
+	"version_number": "4.2.0",
 	"website_url": "https://github.com/CrazyMew37/grindworks-endless-modloader"
 }
