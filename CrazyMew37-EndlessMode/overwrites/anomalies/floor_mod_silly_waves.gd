@@ -18,7 +18,7 @@ func modify_floor() -> void:
 func on_round_ended(_manager: BattleManager = null) -> void:
 	var random_multiplier := randf_range(-0.25, 0.25)
 	if Util.floor_number > 5:
-		random_multiplier = randf_range(-0.25 * floor(1 + ((Util.floor_number - 1) / 10)), 0.25 * floor(1 + ((Util.floor_number - 1) / 10)))
+		random_multiplier = randf_range(-0.25 * (1 + (floor((Util.floor_number - 1) / 5) * 0.5)), 0.25 * (1 + (floor((Util.floor_number - 1) / 5) * 0.5)))
 	multiplier.amount = random_multiplier
 
 func on_battle_ended() -> void:
@@ -39,4 +39,4 @@ func get_mod_icon() -> Texture2D:
 	return load("res://ui_assets/player_ui/pause/silly_waves.png")
 
 func get_description() -> String:
-	return "Your gag damage varies every round (Variation increases every ten floors)"
+	return "Your gag damage varies every round (Variation increases every five floors)"

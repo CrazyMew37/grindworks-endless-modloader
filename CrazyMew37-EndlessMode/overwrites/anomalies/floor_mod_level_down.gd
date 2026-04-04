@@ -26,7 +26,7 @@ func get_mod_icon() -> Texture2D:
 	return load("res://ui_assets/player_ui/pause/faulty_security.png")
 
 func get_description() -> String:
-	return "Cogs are one level lower (Level decrease goes up every five floors)"
+	return "Cogs are one level lower (Level decrease increases by -1 every five floors)"
 
 func tightened_sec_present() -> bool:
 	for modifier in game_floor.floor_variant.anomalies:

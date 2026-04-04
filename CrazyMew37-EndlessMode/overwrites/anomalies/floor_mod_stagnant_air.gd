@@ -9,7 +9,7 @@ var status_effect: StatBoost:
 
 func modify_floor() -> void:
 	if Util.floor_number > 5:
-		floor_mod = -0.25 * floor(1 + ((Util.floor_number - 1) / 10))
+		floor_mod = -0.25 * (1 + (floor((Util.floor_number - 1) / 5) * 0.5))
 	var player := Util.get_player()
 	player.stats.defense += floor_mod
 	game_floor.s_cog_spawned.connect(on_cog_spawned)
@@ -38,4 +38,4 @@ func get_mod_icon() -> Texture2D:
 	return load("res://ui_assets/player_ui/pause/dramaturgy.png")
 
 func get_description() -> String:
-	return "Everyone receives -25% Defense"
+	return "Everyone receives -25% Defense (Your defense goes down by an extra -12.5% every five floors)"
