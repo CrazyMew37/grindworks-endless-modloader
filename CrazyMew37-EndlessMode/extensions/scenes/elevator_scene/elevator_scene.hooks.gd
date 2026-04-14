@@ -16,8 +16,6 @@ var SpeedWipeSetting = SettingsConfig.data["jellybeanwipe"]
 var FINAL_FLOOR_VARIANT = preload('res://scenes/game_floor/floor_variants/alt_floors/final_boss_floor.tres')
 var next_floors: Array[FloorVariant] = []
 
-var Achievement_10 = preload("res://mods-unpacked/CrazyMew37-EndlessMode/extensions/objects/save_file/achievements/resources/achievement_floor_10.tres")
-
 
 func _ready(chain: ModLoaderHookChain) -> void:
 	next_floors.clear()
@@ -139,10 +137,6 @@ func _ready(chain: ModLoaderHookChain) -> void:
 	if Util.floor_number > 4 && EndlessEnabledSetting == 0:
 		ScoreTally.modify_score(ScoreTally.ChannelTimeBonus, 900)
 	
-	
-	# Achievement Stuff
-	if Util.floor_number >= 10:
-		Achievement_10.attempt_unlock()
 	
 	# Save progress at every elevator scene
 	await Task.delay(0.1)

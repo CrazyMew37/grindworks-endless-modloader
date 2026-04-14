@@ -23,10 +23,6 @@ func _ready(chain: ModLoaderHookChain) -> void:
 	# New Health Formula, too. A bit complex but essentially it's 8 times the level squared. Not applied to Level 20 as the result is 3200, NOT vanilla's 3000.
 	# Pick the first boss
 	chain.reference_object.boss_cog.level = ceili(((DifficultyMultiplier) + (floori((Util.floor_number - 1.0) / 8.0) / 2.0)) * Util.floor_number)
-	if chain.reference_obect.boss_cog.level != 20:
-		chain.reference_object.boss_cog.health_mod = 1.0
-		chain.reference_object.boss_cog.stats.max_hp = ceili(8 * (chain.reference_obect.boss_cog.level ^ 2))
-		chain.reference_objecty.boss_cog.stats.hp = ceili(8 * (chain.reference_obect.boss_cog.level ^ 2))
 	var boss_choices = chain.reference_object.possible_bosses.duplicate()
 	if chain.reference_object.DEBUG_FORCE_BOSS_ONE != null and OS.is_debug_build() and chain.reference_object.WANT_DEBUG_BOSSES:
 		chain.reference_object.boss_one_choice = chain.reference_object.DEBUG_FORCE_BOSS_ONE
@@ -37,10 +33,6 @@ func _ready(chain: ModLoaderHookChain) -> void:
 
 	# Pick the second boss
 	chain.reference_object.boss_cog_2.level = ceili(((DifficultyMultiplier) + (floori((Util.floor_number - 1.0) / 8.0) / 2.0)) * Util.floor_number)
-	if chain.reference_obect.boss_cog_2.level != 20:
-		chain.reference_object.boss_cog_2.health_mod = 1.0
-		chain.reference_object.boss_cog_2.stats.max_hp = ceili(8 * (chain.reference_obect.boss_cog_2.level ^ 2))
-		chain.reference_objecty.boss_cog_2.stats.hp = ceili(8 * (chain.reference_obect.boss_cog_2.level ^ 2))
 	if chain.reference_object.DEBUG_FORCE_BOSS_TWO != null and OS.is_debug_build() and chain.reference_object.WANT_DEBUG_BOSSES:
 		chain.reference_object.boss_two_choice = chain.reference_object.DEBUG_FORCE_BOSS_TWO
 	else:
@@ -50,6 +42,16 @@ func _ready(chain: ModLoaderHookChain) -> void:
 	# Nerf their damage got damn!!!
 	chain.reference_object.boss_cog.stats.damage = 1.8
 	chain.reference_object.boss_cog_2.stats.damage = 1.8
+
+	if chain.reference_object.boss_cog.level != 20:
+		chain.reference_object.boss_cog.health_mod = 1.0
+		chain.reference_object.boss_cog.stats.max_hp = ceili(8 * (chain.reference_object.boss_cog.level * chain.reference_object.boss_cog.level))
+		chain.reference_object.boss_cog.stats.hp = ceili(8 * (chain.reference_object.boss_cog.level * chain.reference_object.boss_cog.level))
+
+	if chain.reference_object.boss_cog_2.level != 20:
+		chain.reference_object.boss_cog_2.health_mod = 1.0
+		chain.reference_object.boss_cog_2.stats.max_hp = ceili(8 * (chain.reference_object.boss_cog_2.level * chain.reference_object.boss_cog.level))
+		chain.reference_object.boss_cog_2.stats.hp = ceili(8 * (chain.reference_object.boss_cog_2.level * chain.reference_object.boss_cog.level))
 
 	# Start the battle
 	Util.get_player().state = Player.PlayerState.WALK
