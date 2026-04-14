@@ -80,3 +80,4 @@ func _ready() -> void:
 			"speedwipe": 0,
 			"enablenerfs": 0,
 		})
+		
